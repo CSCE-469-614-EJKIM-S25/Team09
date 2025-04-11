@@ -2,7 +2,7 @@
 
 ## Setup Instructions
 
-Follow these steps to set up your environment for analysis of simulation output.
+Follow these steps to set up your environment for analysis of simulation output. This is a seperate enviroment from venv utilized in simulation dir.
 
 ### 1. Create a Top-Level Virtual Environment
 
