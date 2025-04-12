@@ -2,3 +2,4 @@ build
 outputs
 .sconsign.dblite
 .DS_Store
+.vscode/

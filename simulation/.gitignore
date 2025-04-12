@@ -3,3 +3,4 @@ single-benchmark.zip
 *.pyc
 .DS_Store
 venv
+.vscode/
