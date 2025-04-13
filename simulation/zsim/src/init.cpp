@@ -172,7 +172,7 @@ BaseCache* BuildCacheBank(Config& config, const string& prefix, g_string& name, 
         assert(isPow2(rpvMax + 1));
         // add your SRRIP construction code here
         rp = new SRRIPReplPolicy(numLines, candidates);
-    } else if (replType == "RT_RRIP") {
+    } else if (replType == "RT-RRIP") {
         uint32_t rrpvMax = 3;
         assert(isPow2(rrpvMax + 1));
         rp = new RT_RRIPReplPolicy(numLines, rrpvMax);
