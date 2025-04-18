@@ -89,6 +89,9 @@ struct MemReq {
     //Requester id --- used for contention simulation
     uint32_t srcId;
 
+    // feed to cache for special replacement policies; Mockingjay
+    Address instructionAddr;
+
     //Flags propagate across levels, though not to evictions
     //Some other things that can be indicated here: Demand vs prefetch accesses, TLB accesses, etc.
     enum Flag {

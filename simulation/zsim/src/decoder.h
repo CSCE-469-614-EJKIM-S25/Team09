@@ -53,7 +53,7 @@ struct DynUop {
     uint8_t portMask;
     uint8_t extraSlots; //FU exec slots
     uint8_t pad; //pad to 4-byte multiple
-    uint64_t instructionAddr; 
+    uint64_t instructionAddr; // instruction adress (PC)
 
     void clear();
 };  // 16 bytes. TODO(dsm): check performance with wider operands
