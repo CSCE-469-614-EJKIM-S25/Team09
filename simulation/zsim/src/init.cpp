@@ -50,6 +50,7 @@
 #include "locks.h"
 #include "log.h"
 #include "mem_ctrls.h"
+#include "mockingjay_repl.h"
 #include "network.h"
 #include "null_core.h"
 #include "ooo_core.h"
@@ -176,6 +177,9 @@ BaseCache* BuildCacheBank(Config& config, const string& prefix, g_string& name, 
         uint32_t rrpvMax = 3;
         assert(isPow2(rrpvMax + 1));
         rp = new RT_RRIPReplPolicy(numLines, rrpvMax);
+    } else if (replType == "Mockingjay") {
+        rp = new MockingjayReplPolicy(numLines, numSets);
+        info("Building Mockingjay replacement policy");
     } else if (replType == "WayPart" || replType == "Vantage" || replType == "IdealLRUPart") {
         if (replType == "WayPart" && arrayType != "SetAssoc") panic("WayPart replacement requires SetAssoc array");
 
