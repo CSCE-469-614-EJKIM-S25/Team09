@@ -99,7 +99,7 @@ class FilterCache : public Cache {
             parentStat->append(cacheStat);
         }
 
-        inline uint64_t load(Address vAddr, uint64_t curCycle) {
+        inline uint64_t load(Address vAddr, Address pcAddr, uint64_t curCycle) {
             Address vLineAddr = vAddr >> lineBits;
             uint32_t idx = vLineAddr & setMask;
             uint64_t availCycle = filterArray[idx].availCycle; //read before, careful with ordering to avoid timing races
@@ -107,11 +107,11 @@ class FilterCache : public Cache {
                 fGETSHit++;
                 return MAX(curCycle, availCycle);
             } else {
-                return replace(vLineAddr, idx, true, curCycle);
+                return replace(vLineAddr, pcAddr, idx, true, curCycle);
             }
         }
 
-        inline uint64_t store(Address vAddr, uint64_t curCycle) {
+        inline uint64_t store(Address vAddr, Address pcAddr, uint64_t curCycle) {
             Address vLineAddr = vAddr >> lineBits;
             uint32_t idx = vLineAddr & setMask;
             uint64_t availCycle = filterArray[idx].availCycle; //read before, careful with ordering to avoid timing races
@@ -121,15 +121,15 @@ class FilterCache : public Cache {
                 //filterArray[idx].availCycle = curCycle; //do optimistic store-load forwarding
                 return MAX(curCycle, availCycle);
             } else {
-                return replace(vLineAddr, idx, false, curCycle);
+                return replace(vLineAddr, pcAddr, idx, false, curCycle);
             }
         }
 
-        uint64_t replace(Address vLineAddr, uint32_t idx, bool isLoad, uint64_t curCycle) {
+        uint64_t replace(Address vLineAddr, Address pcAddr, uint32_t idx, bool isLoad, uint64_t curCycle) {
             Address pLineAddr = procMask | vLineAddr;
             MESIState dummyState = MESIState::I;
             futex_lock(&filterLock);
-            MemReq req = {pLineAddr, isLoad? GETS : GETX, 0, &dummyState, curCycle, &filterLock, dummyState, srcId, reqFlags};
+            MemReq req = {pLineAddr, pcAddr, isLoad? GETS : GETX, 0, &dummyState, curCycle, &filterLock, dummyState, srcId, reqFlags};
             uint64_t respCycle  = access(req);
 
             //Due to the way we do the locking, at this point the old address might be invalidated, but we have the new address guaranteed until we release the lock

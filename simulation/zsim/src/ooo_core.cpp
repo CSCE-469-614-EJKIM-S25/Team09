@@ -137,11 +137,16 @@ void OOOCore::contextSwitch(int32_t gid) {
 InstrFuncPtrs OOOCore::GetFuncPtrs() {return {LoadFunc, StoreFunc, BblFunc, BranchFunc, PredLoadFunc, PredStoreFunc, FPTR_ANALYSIS, {0}};}
 
 inline void OOOCore::load(Address addr) {
-    loadAddrs[loads++] = addr;
+    //use pc address of the uop
+    uint32_t idx = loads++;
+    loadAddrs[idx] = addr;
+    loadPcAddrs[idx] = bbl->uop[bblUopIdx].pcAddr;  //store pc address for later use
 }
 
 void OOOCore::store(Address addr) {
-    storeAddrs[stores++] = addr;
+    uint32_t idx = stores++;
+    storeAddrs[idx] = addr;
+    storePcAddrs[idx] = bbl->uop[bblUopIdx].pcAddr;  //store pc address for later use
 }
 
 // Predicated loads and stores call this function, gets recorded as a 0-cycle op.
@@ -272,9 +277,10 @@ inline void OOOCore::bbl(Address bblAddr, BblInfo* bblInfo) {
                     dispatchCycle = MAX(lastStoreAddrCommitCycle+1, dispatchCycle);
 
                     Address addr = loadAddrs[loadIdx++];
+                    Address pcAddr = loadPcAddrs[loadIdx++]; //get the pc address for this load
                     uint64_t reqSatisfiedCycle = dispatchCycle;
                     if (addr != ((Address)-1L)) {
-                        reqSatisfiedCycle = l1d->load(addr, dispatchCycle) + L1D_LAT;
+                        reqSatisfiedCycle = l1d->load(addr, pcAddr, dispatchCycle) + L1D_LAT;
                         cRec.record(curCycle, dispatchCycle, reqSatisfiedCycle);
                     }
 
@@ -311,7 +317,9 @@ inline void OOOCore::bbl(Address bblAddr, BblInfo* bblInfo) {
                     dispatchCycle = MAX(lastStoreAddrCommitCycle+1, dispatchCycle);
 
                     Address addr = storeAddrs[storeIdx++];
-                    uint64_t reqSatisfiedCycle = l1d->store(addr, dispatchCycle) + L1D_LAT;
+                    Address pcAddr = storePcAddrs[storeIdx++]; //get the pc address for this store
+
+                    uint64_t reqSatisfiedCycle = l1d->store(addr, pcAddr, dispatchCycle) + L1D_LAT;
                     cRec.record(curCycle, dispatchCycle, reqSatisfiedCycle);
 
                     // Fill the forwarding table

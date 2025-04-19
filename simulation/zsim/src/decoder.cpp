@@ -172,6 +172,7 @@ void Decoder::emitLoad(Instr& instr, uint32_t idx, DynUopVec& uops, uint32_t des
     uop.rd[0] = destReg;
     uop.type = UOP_LOAD;
     uop.portMask = PORT_2;
+    uop.pcAddr = INS_Address(instr.ins); //store pc address
     uops.push_back(uop); //FIXME: The interface should support in-place grow...
 }
 
@@ -199,6 +200,7 @@ void Decoder::emitStore(Instr& instr, uint32_t idx, DynUopVec& uops, uint32_t sr
     addrUop.lat = 1;
     addrUop.portMask = PORT_3;
     addrUop.type = UOP_STORE_ADDR;
+    addrUop.pcAddr = INS_Address(instr.ins);  //store the pc address
     uops.push_back(addrUop);
 
     //Emit store uop
@@ -208,6 +210,7 @@ void Decoder::emitStore(Instr& instr, uint32_t idx, DynUopVec& uops, uint32_t sr
     uop.rs[1] = srcReg;
     uop.portMask = PORT_4;
     uop.type = UOP_STORE;
+    uop.pcAddr = INS_Address(instr.ins);  //store the pc address
     uops.push_back(uop);
 }
 
