@@ -137,11 +137,16 @@ void OOOCore::contextSwitch(int32_t gid) {
 InstrFuncPtrs OOOCore::GetFuncPtrs() {return {LoadFunc, StoreFunc, BblFunc, BranchFunc, PredLoadFunc, PredStoreFunc, FPTR_ANALYSIS, {0}};}
 
 inline void OOOCore::load(Address addr) {
-    loadAddrs[loads++] = addr;
+    //use pc address of the uop
+    uint32_t idx = loads++;
+    loadAddrs[idx] = addr;
+    loadPcAddrs[idx] = bbl->uop[bblUopIdx].pcAddr;  //store pc address for later use
 }
 
 void OOOCore::store(Address addr) {
-    storeAddrs[stores++] = addr;
+    uint32_t idx = stores++;
+    storeAddrs[idx] = addr;
+    storePcAddrs[idx] = bbl->uop[bblUopIdx].pcAddr;  //store pc address for later use
 }
 
 // Predicated loads and stores call this function, gets recorded as a 0-cycle op.

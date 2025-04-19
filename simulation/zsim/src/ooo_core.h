@@ -386,6 +386,9 @@ class OOOCore : public Core {
         uint32_t loads;
         uint32_t stores;
 
+        Address loadPcAddrs[256];  //pc addresses for loads
+        Address storePcAddrs[256]; //pc addresses for stores
+
         uint64_t lastStoreCommitCycle;
         uint64_t lastStoreAddrCommitCycle; //tracks last store addr uop, all loads queue behind it
 
