@@ -58,6 +58,7 @@ void DynUop::clear() {
 }
 
 Decoder::Instr::Instr(INS _ins) : ins(_ins), numLoads(0), numInRegs(0), numOutRegs(0), numStores(0) {
+    address = INS_Address(ins); // PIN API func see simulation/tools/pin-2.14...-linux/source/include/pin_basic.h
     uint32_t numOperands = INS_OperandCount(ins);
     for (uint32_t op = 0; op < numOperands; op++) {
         bool read = INS_OperandRead(ins, op);
@@ -172,6 +173,7 @@ void Decoder::emitLoad(Instr& instr, uint32_t idx, DynUopVec& uops, uint32_t des
     uop.rd[0] = destReg;
     uop.type = UOP_LOAD;
     uop.portMask = PORT_2;
+    uop.instructionAddr = instr.address;
     uops.push_back(uop); //FIXME: The interface should support in-place grow...
 }
 
@@ -199,6 +201,7 @@ void Decoder::emitStore(Instr& instr, uint32_t idx, DynUopVec& uops, uint32_t sr
     addrUop.lat = 1;
     addrUop.portMask = PORT_3;
     addrUop.type = UOP_STORE_ADDR;
+    addrUop.instructionAddr = instr.address;
     uops.push_back(addrUop);
 
     //Emit store uop
@@ -208,6 +211,7 @@ void Decoder::emitStore(Instr& instr, uint32_t idx, DynUopVec& uops, uint32_t sr
     uop.rs[1] = srcReg;
     uop.portMask = PORT_4;
     uop.type = UOP_STORE;
+    uop.instructionAddr = instr.address;
     uops.push_back(uop);
 }
 

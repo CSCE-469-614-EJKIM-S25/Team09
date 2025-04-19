@@ -271,10 +271,12 @@ inline void OOOCore::bbl(Address bblAddr, BblInfo* bblInfo) {
                     // Wait for all previous store addresses to be resolved
                     dispatchCycle = MAX(lastStoreAddrCommitCycle+1, dispatchCycle);
 
+                    Address instructionAddr = uop->instructionAddr; // Address defined as uint64_t (no type conversion needed)  
+
                     Address addr = loadAddrs[loadIdx++];
                     uint64_t reqSatisfiedCycle = dispatchCycle;
                     if (addr != ((Address)-1L)) {
-                        reqSatisfiedCycle = l1d->load(addr, dispatchCycle) + L1D_LAT;
+                        reqSatisfiedCycle = l1d->load(addr, dispatchCycle, instructionAddr) + L1D_LAT; //l1d is type FilterCache* | load() member in filter_cache.h
                         cRec.record(curCycle, dispatchCycle, reqSatisfiedCycle);
                     }
 
@@ -310,8 +312,10 @@ inline void OOOCore::bbl(Address bblAddr, BblInfo* bblInfo) {
                     // Wait for all previous store addresses to be resolved (not just ours :))
                     dispatchCycle = MAX(lastStoreAddrCommitCycle+1, dispatchCycle);
 
+                    Address instructionAddr = uop->instructionAddr; // Address defined as uint64_t (no type conversion needed)  
+
                     Address addr = storeAddrs[storeIdx++];
-                    uint64_t reqSatisfiedCycle = l1d->store(addr, dispatchCycle) + L1D_LAT;
+                    uint64_t reqSatisfiedCycle = l1d->store(addr, dispatchCycle, instructionAddr) + L1D_LAT;//l1d is type FilterCache* | store() member in filter_cache.h
                     cRec.record(curCycle, dispatchCycle, reqSatisfiedCycle);
 
                     // Fill the forwarding table
