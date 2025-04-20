@@ -137,16 +137,19 @@ void OOOCore::contextSwitch(int32_t gid) {
 InstrFuncPtrs OOOCore::GetFuncPtrs() {return {LoadFunc, StoreFunc, BblFunc, BranchFunc, PredLoadFunc, PredStoreFunc, FPTR_ANALYSIS, {0}};}
 
 inline void OOOCore::load(Address addr) {
-    //use pc address of the uop
-    uint32_t idx = loads++;
+    uint32_t idx = loads;
     loadAddrs[idx] = addr;
-    loadPcAddrs[idx] = bbl->uop[bblUopIdx].pcAddr;  //store pc address for later use
+    loadPcAddrs[idx] = (currentBbl && currentUopIdx < currentBbl->uops) ? 
+                        currentBbl->uop[currentUopIdx].pcAddr : addr;
+    loads += 2; // Increment by 2 to match the two values retrieved in bbl
 }
 
 void OOOCore::store(Address addr) {
-    uint32_t idx = stores++;
+    uint32_t idx = stores;
     storeAddrs[idx] = addr;
-    storePcAddrs[idx] = bbl->uop[bblUopIdx].pcAddr;  //store pc address for later use
+    storePcAddrs[idx] = (currentBbl && currentUopIdx < currentBbl->uops) ? 
+                         currentBbl->uop[currentUopIdx].pcAddr : addr;  //use the current basic block's pc address
+    stores += 2; // Increment by 2 to match the two values retrieved in bbl
 }
 
 // Predicated loads and stores call this function, gets recorded as a 0-cycle op.
@@ -170,6 +173,9 @@ inline void OOOCore::bbl(Address bblAddr, BblInfo* bblInfo) {
     if (!prevBbl) {
         // This is the 1st BBL since scheduled, nothing to simulate
         prevBbl = bblInfo;
+        // Initialize currentBbl and currentUopIdx
+        currentBbl = &(bblInfo->oooBbl[0]);
+        currentUopIdx = 0;
         // Kill lingering ops from previous BBL
         loads = stores = 0;
         return;
@@ -419,7 +425,7 @@ inline void OOOCore::bbl(Address bblAddr, BblInfo* bblInfo) {
         Address wrongPathAddr = branchTaken? branchNotTakenNpc : branchTakenNpc;
         uint64_t reqCycle = fetchCycle;
         for (uint32_t i = 0; i < 5*64/lineSize; i++) {
-            uint64_t fetchLat = l1i->load(wrongPathAddr + lineSize*i, curCycle) - curCycle;
+            uint64_t fetchLat = l1i->load(wrongPathAddr + lineSize*i, bblAddr, curCycle) - curCycle;
             cRec.record(curCycle, curCycle, curCycle + fetchLat);
             uint64_t respCycle = reqCycle + fetchLat;
             if (respCycle > lastCommitCycle) {
@@ -440,7 +446,7 @@ inline void OOOCore::bbl(Address bblAddr, BblInfo* bblInfo) {
         // Do not model fetch throughput limit here, decoder-generated stalls already include it
         // We always call fetches with curCycle to avoid upsetting the weave
         // models (but we could move to a fetch-centric recorder to avoid this)
-        uint64_t fetchLat = l1i->load(fetchAddr, curCycle) - curCycle;
+        uint64_t fetchLat = l1i->load(fetchAddr, bblAddr, curCycle) - curCycle;
         cRec.record(curCycle, curCycle, curCycle + fetchLat);
         fetchCycle += fetchLat;
     }
@@ -455,6 +461,9 @@ inline void OOOCore::bbl(Address bblAddr, BblInfo* bblInfo) {
 #endif
         decodeCycle = minFetchDecCycle;
     }
+    // Update for next BBL
+    currentBbl = &(bblInfo->oooBbl[0]);
+    currentUopIdx = 0;
 }
 
 // Timing simulation code

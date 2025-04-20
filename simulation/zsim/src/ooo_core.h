@@ -380,6 +380,9 @@ class OOOCore : public Core {
 
         BblInfo* prevBbl;
 
+        DynBbl* currentBbl;     // Current basic block being processed
+        uint32_t currentUopIdx; // Current micro-op index within the basic block
+
         //Record load and store addresses
         Address loadAddrs[256];
         Address storeAddrs[256];

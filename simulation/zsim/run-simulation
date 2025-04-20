@@ -6,7 +6,7 @@ if [ "$#" -ne 3 ]; then
     echo "    (suite) benchmarks: "
     echo "      -- (SPEC) bzip2 gcc mcf hmmer xalan cactusADM leslie3d namd calculix sjeng libquantum soplex lbm"
     echo "      -- (PARSEC) blackscholes bodytrack fluidanimate streamcluster swaptions canneal x264"
-    echo "    repl_policy: LRU LFU SRRIP RT-RRIP WeiSub"
+    echo "    repl_policy: LRU LFU NRU Rand SRRIP RT-RRIP TreeLRU Mockingjay"
 else
     suite=$1
     bench=$2

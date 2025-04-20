@@ -48,11 +48,11 @@ uint64_t SimpleCore::getPhaseCycles() const {
 }
 
 void SimpleCore::load(Address addr) {
-    curCycle = l1d->load(addr, curCycle);
+    curCycle = l1d->load(addr, addr, curCycle);
 }
 
 void SimpleCore::store(Address addr) {
-    curCycle = l1d->store(addr, curCycle);
+    curCycle = l1d->store(addr, addr, curCycle);
 }
 
 void SimpleCore::bbl(Address bblAddr, BblInfo* bblInfo) {
@@ -63,7 +63,7 @@ void SimpleCore::bbl(Address bblAddr, BblInfo* bblInfo) {
 
     Address endBblAddr = bblAddr + bblInfo->bytes;
     for (Address fetchAddr = bblAddr; fetchAddr < endBblAddr; fetchAddr+=(1 << lineBits)) {
-        curCycle = l1i->load(fetchAddr, curCycle);
+        curCycle = l1i->load(fetchAddr, fetchAddr, curCycle);
     }
 }
 

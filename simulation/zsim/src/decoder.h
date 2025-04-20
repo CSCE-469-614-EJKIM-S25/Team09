@@ -29,6 +29,7 @@
 #include <stdint.h>
 #include <vector>
 #include "pin.H"
+#include "memory_hierarchy.h"
 
 // Uncomment to get a count of BBLs run. This is currently used to get a distribution of inaccurate instructions decoded that are actually run
 // NOTE: This is not multiprocess-safe

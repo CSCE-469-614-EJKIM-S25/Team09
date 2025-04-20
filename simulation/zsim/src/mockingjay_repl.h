@@ -6,6 +6,7 @@
 #include "hash.h"
 #include <cmath>
 
+//Adapted from Ishan Shah's ChampSim implementation of Mockingjay
 class MockingjayReplPolicy : public ReplPolicy {
 private:
     // Cache parameters
@@ -256,7 +257,7 @@ public:
     void update(uint32_t id, const MemReq* req) override {
         // Extract set and way
         uint32_t set = id / numWays;
-        uint32_t way = id % numWays;
+        //uint32_t way = id % numWays; //Not used?
         uint32_t cpuId = req->srcId;
         bool isPrefetch = (req->flags & MemReq::PREFETCH);
         bool isHit = (req->type == GETS);

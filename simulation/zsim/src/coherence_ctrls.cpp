@@ -67,13 +67,13 @@ uint64_t MESIBottomCC::processEviction(Address wbLineAddr, uint32_t lineId, bool
         case S:
         case E:
             {
-                MemReq req = {wbLineAddr, PUTS, selfId, state, cycle, &ccLock, *state, srcId, 0 /*no flags*/};
+                MemReq req = {wbLineAddr, 0, PUTS, selfId, state, cycle, &ccLock, *state, srcId, 0 /*no flags*/};
                 respCycle = parents[getParentId(wbLineAddr)]->access(req);
             }
             break;
         case M:
             {
-                MemReq req = {wbLineAddr, PUTX, selfId, state, cycle, &ccLock, *state, srcId, 0 /*no flags*/};
+                MemReq req = {wbLineAddr, 0, PUTX, selfId, state, cycle, &ccLock, *state, srcId, 0 /*no flags*/};
                 respCycle = parents[getParentId(wbLineAddr)]->access(req);
             }
             break;
@@ -104,7 +104,7 @@ uint64_t MESIBottomCC::processAccess(Address lineAddr, uint32_t lineId, AccessTy
         case GETS:
             if (*state == I) {
                 uint32_t parentId = getParentId(lineAddr);
-                MemReq req = {lineAddr, GETS, selfId, state, cycle, &ccLock, *state, srcId, flags};
+                MemReq req = {lineAddr, 0, GETS, selfId, state, cycle, &ccLock, *state, srcId, flags};
                 uint32_t nextLevelLat = parents[parentId]->access(req) - cycle;
                 uint32_t netLat = parentRTTs[parentId];
                 profGETNextLevelLat.inc(nextLevelLat);
@@ -122,7 +122,7 @@ uint64_t MESIBottomCC::processAccess(Address lineAddr, uint32_t lineId, AccessTy
                 if (*state == I) profGETXMissIM.inc();
                 else profGETXMissSM.inc();
                 uint32_t parentId = getParentId(lineAddr);
-                MemReq req = {lineAddr, GETX, selfId, state, cycle, &ccLock, *state, srcId, flags};
+                MemReq req = {lineAddr, 0, GETX, selfId, state, cycle, &ccLock, *state, srcId, flags};
                 uint32_t nextLevelLat = parents[parentId]->access(req) - cycle;
                 uint32_t netLat = parentRTTs[parentId];
                 profGETNextLevelLat.inc(nextLevelLat);
@@ -190,7 +190,7 @@ uint64_t MESIBottomCC::processNonInclusiveWriteback(Address lineAddr, AccessType
     if (!nonInclusiveHack) panic("Non-inclusive %s on line 0x%lx, this cache should be inclusive", AccessTypeName(type), lineAddr);
 
     //info("Non-inclusive wback, forwarding");
-    MemReq req = {lineAddr, type, selfId, state, cycle, &ccLock, *state, srcId, flags | MemReq::NONINCLWB};
+    MemReq req = {lineAddr, 0, type, selfId, state, cycle, &ccLock, *state, srcId, flags | MemReq::NONINCLWB};
     uint64_t respCycle = parents[getParentId(lineAddr)]->access(req);
     return respCycle;
 }
