@@ -141,7 +141,7 @@ inline void OOOCore::load(Address addr) {
     loadAddrs[idx] = addr;
     loadPcAddrs[idx] = (currentBbl && currentUopIdx < currentBbl->uops) ? 
                         currentBbl->uop[currentUopIdx].pcAddr : addr;
-    loads += 2; // Increment by 2 to match the two values retrieved in bbl
+    loads+=2;
 }
 
 void OOOCore::store(Address addr) {
@@ -149,17 +149,19 @@ void OOOCore::store(Address addr) {
     storeAddrs[idx] = addr;
     storePcAddrs[idx] = (currentBbl && currentUopIdx < currentBbl->uops) ? 
                          currentBbl->uop[currentUopIdx].pcAddr : addr;  //use the current basic block's pc address
-    stores += 2; // Increment by 2 to match the two values retrieved in bbl
+    stores+=2;
 }
 
 // Predicated loads and stores call this function, gets recorded as a 0-cycle op.
 // Predication is rare enough that we don't need to model it perfectly to be accurate (i.e. the uops still execute, retire, etc), but this is needed for correctness.
 void OOOCore::predFalseLoad() {
     loadAddrs[loads++] = -1L;
+    loadPcAddrs[loads++] = -1L;
 }
 
 void OOOCore::predFalseStore() {
     storeAddrs[stores++] = -1L;
+    storePcAddrs[stores++] = -1L;
 }
 
 void OOOCore::branch(Address pc, bool taken, Address takenNpc, Address notTakenNpc) {

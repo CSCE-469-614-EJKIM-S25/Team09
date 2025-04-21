@@ -9,10 +9,10 @@
 //Adapted from Ishan Shah's ChampSim implementation of Mockingjay
 class MockingjayReplPolicy : public ReplPolicy {
 private:
-    // Cache parameters
-    uint32_t numLines;
-    uint32_t numSets;
-    uint32_t numWays;
+    // Cache parameters. Need to define due to ZSim flexibility.
+    uint32_t numLines; //sets * ways
+    uint32_t numSets; 
+    uint32_t numWays; // lines per set
     uint32_t numCores;
     
     // Constants calculated from ZSim parameters
@@ -21,32 +21,35 @@ private:
     uint32_t LOG2_LLC_SIZE;
     uint32_t LOG2_SAMPLED_SETS;
     
-    const uint32_t HISTORY = 8;
-    const uint32_t GRANULARITY = 8;
+    //Reuse Distance constants 
+    const uint32_t HISTORY = 8; //How far we look back in history
+    const uint32_t GRANULARITY = 8; //Factor for ETR and reuse distance
     
-    uint32_t INF_RD;
-    int32_t INF_ETR;
-    uint32_t MAX_RD;
+    //Special constants
+    uint32_t INF_RD; //Infinite reuse distance
+    int32_t INF_ETR; //Infinite estimated time remaining
+    uint32_t MAX_RD; //Max reused distance
     
+    //Sampled cache parameters
     const uint32_t SAMPLED_CACHE_WAYS = 5;
     const uint32_t LOG2_SAMPLED_CACHE_SETS = 4;
     uint32_t SAMPLED_CACHE_TAG_BITS;
     uint32_t PC_SIGNATURE_BITS;
     const uint32_t TIMESTAMP_BITS = 8;
     
-    const double TEMP_DIFFERENCE = 1.0/16.0;
-    double FLEXMIN_PENALTY;
+    const double TEMP_DIFFERENCE = 1.0/16.0; //How quickly predictions are updated
+    double FLEXMIN_PENALTY; //Penalty for prefetched lines
     
     // ETR counters and clocks
-    int8_t* etr;
-    uint8_t* etrClock;
+    int8_t* etr; //per cache line
+    uint8_t* etrClock; //for aging ETR values
     
     // Reuse Distance Predictor
     struct RDPEntry {
-        uint32_t reuseDistance;
+        uint32_t reuseDistance; //predicted reuse distance
     };
     
-    // Using a simpler array approach instead of unordered_map
+    // Simple table of reuse distance predictors
     RDPEntry* rdpTable;
     
     // Current timestamp for each set
@@ -57,21 +60,22 @@ private:
     
     // Sampled cache structures
     struct SampledCacheLine {
-        bool valid;
+        bool valid; //is the entry in use
         uint64_t tag;
-        uint64_t signature;
-        int timestamp;
+        uint64_t signature; //pc signature
+        int timestamp; //when was the line last accessed
     };
     
-    // Using arrays for the sampled cache instead of unordered_map
+    // Sampled cache storage
     SampledCacheLine* sampledCache;
     uint32_t sampledCacheSize;
     
     // Helper methods
     bool isSampledSet(uint32_t set) {
-        return isSampledSetMap[set];
+        return isSampledSetMap[set]; //checking if set is sampled
     }
     
+    //Hash function for generating signatures. Uses CRC-based algorithm
     uint64_t crcHash(uint64_t blockAddress) {
         static const uint64_t crcPolynomial = 3988292384ULL;
         uint64_t returnVal = blockAddress;
@@ -81,16 +85,17 @@ private:
         return returnVal;
     }
     
+    //Generating a unique signature for cache access
     uint64_t getPCSignature(uint64_t pc, bool hit, bool prefetch, uint32_t coreId) {
         if (numCores == 1) {
             // Single-core implementation
             pc = pc << 1;
             if (hit) {
-                pc = pc | 1;
+                pc = pc | 1; //Encoding hit info
             }
             pc = pc << 1;
             if (prefetch) {
-                pc = pc | 1;
+                pc = pc | 1; //Encoding prefetch info
             }
             pc = crcHash(pc);
             // Mask to signature bits
@@ -110,18 +115,21 @@ private:
         return pc;
     }
     
-    uint32_t getSampledCacheIndex(uint32_t set, uint64_t blockAddr) {
+    //Calculating index in the sampled cache
+    uint32_t getSampledCacheIndex(uint64_t full_addr){
         // Calculate the sampled cache set index
-        uint32_t sampledSetId = set & ((1 << LOG2_SAMPLED_SETS) - 1);
-        uint32_t blockAddrBits = (uint32_t)(blockAddr & 0xF); // Lower 4 bits of address
-        return (sampledSetId << LOG2_SAMPLED_CACHE_SETS) | blockAddrBits;
+        uint64_t addr = full_addr >> LOG2_BLOCK_SIZE;
+        addr = (addr << (64 - (LOG2_SAMPLED_CACHE_SETS + LOG2_LLC_SET))) >> (64 - (LOG2_SAMPLED_CACHE_SETS + LOG2_LLC_SET));
+        return static_cast<uint32_t>(addr);
     }
     
+    //Extracting tag for sampled cache line
     uint64_t getSampledCacheTag(uint64_t fullAddr) {
         return (fullAddr >> (LOG2_LLC_SET + LOG2_BLOCK_SIZE + LOG2_SAMPLED_CACHE_SETS)) & 
                ((1ULL << SAMPLED_CACHE_TAG_BITS) - 1);
     }
     
+    //Searching for a line in the sampled cache
     int searchSampledCache(uint64_t blockTag, uint32_t sampledSetIdx) {
         uint32_t baseIdx = sampledSetIdx * SAMPLED_CACHE_WAYS;
         
@@ -130,30 +138,32 @@ private:
                 return way;
             }
         }
-        return -1;
+        return -1; //If not found
     }
     
+    //Increases RD for a line that wasn't reused
     void detrain(uint32_t sampledSetIdx, int way) {
-        if (way < 0 || way >= (int)SAMPLED_CACHE_WAYS) {
+        if (way < 0 || way >= (int)SAMPLED_CACHE_WAYS) { //invalid way
             return;
         }
         
-        uint32_t idx = sampledSetIdx * SAMPLED_CACHE_WAYS + way;
-        if (!sampledCache[idx].valid) {
+        uint32_t idx = sampledSetIdx * SAMPLED_CACHE_WAYS + way; //convert set and way to an index
+        if (!sampledCache[idx].valid) { //invalid, nothing to update
             return;
         }
         
-        uint64_t signature = sampledCache[idx].signature;
+        uint64_t signature = sampledCache[idx].signature; //get pc signature for the cache line
         
-        // Update RDP for this signature with INF_RD
+        // Update RDP for this signature with INF_RD if signature is valid
         if (signature < (1ULL << PC_SIGNATURE_BITS)) {
-            rdpTable[signature].reuseDistance = MIN(rdpTable[signature].reuseDistance + 1, INF_RD);
+            rdpTable[signature].reuseDistance = MIN(rdpTable[signature].reuseDistance + 1, INF_RD); //increasing reused distance
         }
         
-        sampledCache[idx].valid = false;
+        sampledCache[idx].valid = false; //finished learning from an entry, free it up for a new one
     }
     
-    int temporalDifference(int init, int sample) {
+    //Adjust RD smoothly
+    int temporalDifference(int init /*initial RD*/, int sample /*sampled RD*/) {
         if (sample > init) {
             int diff = sample - init;
             double weight = diff * TEMP_DIFFERENCE;
@@ -169,25 +179,28 @@ private:
         }
     }
     
+    //increment the timestamp
     uint32_t incrementTimestamp(uint32_t input) {
         input++;
-        input = input % (1 << TIMESTAMP_BITS);
+        input = input % (1 << TIMESTAMP_BITS); //handles wraparounds
         return input;
     }
     
+    //Calculate elapsed time between timestamps. Global=current, Local=last
     int timeElapsed(int global, int local) {
         if (global >= local) {
             return global - local;
         }
-        // Handle wrap-around
+        //handle wraparound
         return global + (1 << TIMESTAMP_BITS) - local;
     }
 
 public:
+    //Constructor
     explicit MockingjayReplPolicy(uint32_t _numLines, uint32_t _numSets) 
         : numLines(_numLines), numSets(_numSets), numWays(_numLines/_numSets) {
         
-        numCores = zinfo->numCores;
+        numCores = zinfo->numCores; //getting number of cores
         
         // Calculate log2 values based on ZSim parameters
         LOG2_BLOCK_SIZE = ilog2(zinfo->lineSize);
@@ -215,6 +228,9 @@ public:
         
         // Initialize RDP table
         rdpTable = gm_calloc<RDPEntry>(1 << PC_SIGNATURE_BITS);
+        for (uint64_t i = 0; i < (1ULL << PC_SIGNATURE_BITS); i++) {
+            rdpTable[i].reuseDistance = INF_RD; //untrained entries should start at INF_RD
+        }
         
         // Initialize sampled set map
         isSampledSetMap = gm_calloc<bool>(numSets);
@@ -237,6 +253,7 @@ public:
         sampledCacheSize = totalSampledLines;
         sampledCache = gm_calloc<SampledCacheLine>(sampledCacheSize);
         
+        //Details for log file
         info("Mockingjay initialized: numCores=%d, LOG2_LLC_SIZE=%d, PC_SIGNATURE_BITS=%d, INF_RD=%d, MAX_RD=%d, FLEXMIN_PENALTY=%.2f",
              numCores, LOG2_LLC_SIZE, PC_SIGNATURE_BITS, INF_RD, MAX_RD, FLEXMIN_PENALTY);
     }
@@ -251,42 +268,49 @@ public:
     }
     
     void initStats(AggregateStat* parent) override {
-        // Not neeeded
+        //not used
     }
     
+    //Main learning method called on each cache line access. 
     void update(uint32_t id, const MemReq* req) override {
-        // Extract set and way
-        uint32_t set = id / numWays;
-        //uint32_t way = id % numWays; //Not used?
-        uint32_t cpuId = req->srcId;
-        bool isPrefetch = (req->flags & MemReq::PREFETCH);
-        bool isHit = (req->type == GETS);
+        uint32_t set = id / numWays; //calculate the set of the line id
+        uint32_t cpuId = req->srcId; //id of cpu that issued the request
+        bool isPrefetch = (req->flags & MemReq::PREFETCH); //true if prefetch
+        bool isHit = (req->type == GETS || req->type == GETX); //true if a hit
         
-        // Skip updating for writebacks
+        // Handle writebacks specially
         if (req->type == PUTS || req->type == PUTX) {
-            if (!isHit) {
-                // Initialize ETR for writebacks
-                etr[id] = -INF_ETR;
-            }
+            // Set immediate eviction priority for writebacks
+            etr[id] = -INF_ETR;
             return;
         }
         
-        // Generate PC signature
+        // Generate PC signature by hashing PC, hit/prefetch flag, and core into a compact signature
         uint64_t pcSignature = getPCSignature(req->pcAddr, isHit, isPrefetch, cpuId);
         
+        // Early bypass check. If predictor says PC has large RD
+        if (rdpTable[pcSignature].reuseDistance > MAX_RD) {
+            etr[id] = INF_ETR; // Set to max priority for eviction if line is forced in
+            return;
+        }
         // Update sampled cache if this is a sampled set
         if (isSampledSet(set)) {
-            uint32_t sampledCacheIndex = getSampledCacheIndex(set, req->lineAddr);
+            //compute index and tag for sampled cache
+            uint32_t sampledCacheIndex = getSampledCacheIndex(req->lineAddr);
             uint64_t sampledCacheTag = getSampledCacheTag(req->lineAddr);
+
+            //look for existing entry
             int sampledCacheWay = searchSampledCache(sampledCacheTag, sampledCacheIndex);
             
+            //if found
             if (sampledCacheWay > -1) {
                 // Hit in sampled cache
-                uint32_t idx = sampledCacheIndex * SAMPLED_CACHE_WAYS + sampledCacheWay;
-                uint64_t lastSignature = sampledCache[idx].signature;
-                uint64_t lastTimestamp = sampledCache[idx].timestamp;
-                int sample = timeElapsed(currentTimestamp[set], lastTimestamp);
+                uint32_t idx = sampledCacheIndex * SAMPLED_CACHE_WAYS + sampledCacheWay; //compute index
+                uint64_t lastSignature = sampledCache[idx].signature; //extract signature of entry
+                uint64_t lastTimestamp = sampledCache[idx].timestamp; //extract timestampt
+                int sample = timeElapsed(currentTimestamp[set], lastTimestamp); //elapsed time since insertion
                 
+                //updating only if within the valid reuse window
                 if (sample <= (int)INF_RD) {
                     // Apply FLEXMIN penalty for prefetches
                     if (isPrefetch) {
@@ -299,37 +323,39 @@ public:
                         rdpTable[lastSignature].reuseDistance = temporalDifference(init, sample);
                     }
                     
-                    // Clear the entry
+                    // Clear the entry so it won't be reused again
                     sampledCache[idx].valid = false;
                 }
             }
             
-            // Find space for new entry
+            // Find space for new entry (a victim way in the sampled cache).
             int lruWay = -1;
             int lruRd = -1;
             for (uint32_t w = 0; w < SAMPLED_CACHE_WAYS; w++) {
                 uint32_t idx = sampledCacheIndex * SAMPLED_CACHE_WAYS + w;
                 if (!sampledCache[idx].valid) {
+                    //prefer empty slots immediately
                     lruWay = w;
                     lruRd = INF_RD + 1;
                     break;
                 }
                 
+                //calculate age for occupied slots
                 uint64_t lastTimestamp = sampledCache[idx].timestamp;
                 int sample = timeElapsed(currentTimestamp[set], lastTimestamp);
-                if (sample > (int)INF_RD) {
+                if (sample > (int)INF_RD) { //old, need to detrain
                     lruWay = w;
                     lruRd = INF_RD + 1;
                     detrain(sampledCacheIndex, w);
-                } else if (sample > lruRd) {
+                } else if (sample > lruRd) { //else choose entry with largest elapsed time
                     lruWay = w;
                     lruRd = sample;
                 }
             }
             
-            detrain(sampledCacheIndex, lruWay);
+            detrain(sampledCacheIndex, lruWay); //final detrain of chosen victim way, if any
             
-            // Insert new entry
+            // Insert new sampled entry at that way
             if (lruWay >= 0) {
                 uint32_t idx = sampledCacheIndex * SAMPLED_CACHE_WAYS + lruWay;
                 sampledCache[idx].valid = true;
@@ -342,7 +368,7 @@ public:
             currentTimestamp[set] = incrementTimestamp(currentTimestamp[set]);
         }
         
-        // Age lines in the set
+        // Age lines in the set at every GRANULARIty
         if (etrClock[set] == GRANULARITY) {
             for (uint32_t w = 0; w < numWays; w++) {
                 uint32_t lineId = set * numWays + w;
@@ -352,20 +378,20 @@ public:
             }
             etrClock[set] = 0;
         }
-        etrClock[set]++;
+        etrClock[set]++; //increment per-set access counter
         
-        // Update ETR for the accessed line
-        if (pcSignature >= (1ULL << PC_SIGNATURE_BITS) || rdpTable[pcSignature].reuseDistance == 0) {
-            if (numCores == 1) {
+        // Update ETR for the accessed line based on predictor's RD
+        if (pcSignature >= (1ULL << PC_SIGNATURE_BITS) || rdpTable[pcSignature].reuseDistance == 0) { //if pc signature is invalid or never trained
+            if (numCores == 1) { //assume it will be reused soon in single core
                 etr[id] = 0;
             } else {
-                etr[id] = INF_ETR;
+                etr[id] = INF_ETR; //more conservative in multicore (will not reuse)
             }
-        } else {
-            if (rdpTable[pcSignature].reuseDistance > MAX_RD) {
+        } else { //otherwise it is valid and predicted RD is nonzero
+            if (rdpTable[pcSignature].reuseDistance > MAX_RD) { //if the RD is above the threshold, unlikely to reuse
                 etr[id] = INF_ETR;
             } else {
-                etr[id] = rdpTable[pcSignature].reuseDistance / GRANULARITY;
+                etr[id] = rdpTable[pcSignature].reuseDistance / GRANULARITY; //calculate etr based on RD
             }
         }
     }
@@ -375,36 +401,36 @@ public:
         etr[id] = 0;
     }
     
+    //determining which line to evict when cache is full
     template <typename C>
     uint32_t rank(const MemReq* req, C cands) {
-        // Check if we should bypass based on predicted reuse distance
-        if (req && req->type != PUTS && req->type != PUTX) { // Not a writeback
-            uint64_t pcSignature = getPCSignature(req->pcAddr, false, (req->flags & MemReq::PREFETCH), req->srcId);
-            if (pcSignature < (1ULL << PC_SIGNATURE_BITS) && 
-                rdpTable[pcSignature].reuseDistance > MAX_RD) {
-                // This line has a very long predicted reuse distance - bypass it
-                return (uint32_t)-1; // Special value indicating bypass
-            }
-        }
-        
-        // Find the line with maximum absolute ETR value
-        uint32_t bestCand = -1;
-        int32_t maxEtr = -1;
+        // Find the line with minimum sharing first, then maximum absolute ETR value
+        uint32_t bestCand = -1; //best candidate line to evict
+        uint32_t minSharers = UINT32_MAX;
+        int32_t maxEtr = -1; //max estimated time remaining
         
         for (auto ci = cands.begin(); ci != cands.end(); ci.inc()) {
             uint32_t candId = *ci;
             
-            // Skip invalid lines (already handled in ZSim)
+            // Skip invalid lines
             if (!cc->isValid(candId)) {
                 bestCand = candId;
                 break;
             }
             
+            // Get number of sharers for this line
+            uint32_t sharers = cc->numSharers(candId);
+            
             // Get absolute ETR value
             int32_t absEtr = abs(etr[candId]);
             
-            // Prioritize lines with negative ETR (exceeded their ETA)
-            if (absEtr > maxEtr || (absEtr == maxEtr && etr[candId] < 0)) {
+            // Prioritize lines with fewer sharers
+            // if same number of sharers, choose the one with higher absolute ETR
+            // if sharers and ETR are same, choose lines that are further in the past
+            if (sharers < minSharers || 
+                (sharers == minSharers && absEtr > maxEtr) ||
+                (sharers == minSharers && absEtr == maxEtr && etr[candId] < 0)) {
+                minSharers = sharers;
                 maxEtr = absEtr;
                 bestCand = candId;
             }
