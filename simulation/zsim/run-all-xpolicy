@@ -1,13 +1,18 @@
 #!/bin/sh
 
+# NOTE: This script does not output to terminal
+# ALL jobs run sequentially in background
+# USE PID to kill benchmark simulation. 
+# IN outputs/ refresh dir to view .out and .log files if they do not show automatically
+
 if [ "$#" -ne 2 ]; then
     echo ""
-    echo "Usage: bash run-all-xpolicy <group_member> <repl_policy>"
+    echo "Usage: ./run-all-xpolicy <group_member> <repl_policy>"
     echo "    group_member: "
     echo "      -- Zach"
     echo "      -- Rodrigo"
     echo "      -- Brycen"
-    echo "    repl_policy: LRU LFU SRRIP ST-RRIP Mockingjay"
+    echo "    repl_policy: LRU LFU SRRIP ST-RRIP Mockingjay Vantage"
 else
     group_member=$1
     repl=$2
@@ -34,7 +39,7 @@ else
         # Loop through the selected benchmarks and execute them sequentially
         for bench in $benchmarks; do
             mkdir -p outputs/hw4/$repl/${bench}
-            echo "./build/opt/zsim configs/hw4/$repl/${bench}.cfg > outputs/hw4/$repl/${bench}/${bench}.log 2>&1"
+            # echo "./build/opt/zsim configs/hw4/$repl/${bench}.cfg > outputs/hw4/$repl/${bench}/${bench}.log 2>&1"
             ./build/opt/zsim configs/hw4/$repl/${bench}.cfg > outputs/hw4/$repl/${bench}/${bench}.log 2>&1 &
             
             # Capture the PID of the zsim process
