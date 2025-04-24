@@ -1,6 +1,14 @@
 # casim
 Computer Architecture Simulation Infrastructure for CSCE 614 Computer Architecture
 
+##### 0. WSL Set up
+
+Use wsl-deps bash script to install dependencies and configure PIN API & benchmark scripts (they require x privileges)
+
+```
+$ bash wsl-deps.sh
+```
+
 
 ##### 1. Unzip benchmarks files
 

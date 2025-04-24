@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # to run this script: bash wsl-deps.sh
+# will prompt for password
 
 sudo apt install zip
 sudo apt install python3.10-venv
