@@ -166,14 +166,12 @@ private:
     int temporalDifference(int init /*initial RD*/, int sample /*sampled RD*/) {
         if (sample > init) {
             int diff = sample - init;
-            double weight = diff * TEMP_DIFFERENCE;
-            weight = MIN(1.0, weight);
-            return MIN(init + (int)weight, (int)INF_RD);
+            int weight = std::min(1, diff / 16); // limit to +1
+            return std::min(init + weight, (int)INF_RD);
         } else if (sample < init) {
             int diff = init - sample;
-            double weight = diff * TEMP_DIFFERENCE;
-            weight = MIN(1.0, weight);
-            return MAX(init - (int)weight, 0);
+            int weight = std::min(1, diff / 16); // limit to -1
+            return std::max(init - weight, 0);
         } else {
             return init;
         }
@@ -372,7 +370,9 @@ public:
         if (etrClock[set] == GRANULARITY) {
             for (uint32_t w = 0; w < numWays; w++) {
                 uint32_t lineId = set * numWays + w;
-                if (lineId != id && abs(etr[lineId]) < INF_ETR) {
+                //only age non-scanning lines (ETR < INF_ETR, no abs)
+                //and skip the currently accessed line
+                if (lineId != id && etr[lineId] < INF_ETR) {
                     etr[lineId]--;
                 }
             }
@@ -380,18 +380,33 @@ public:
         }
         etrClock[set]++; //increment per-set access counter
         
-        // Update ETR for the accessed line based on predictor's RD
-        if (pcSignature >= (1ULL << PC_SIGNATURE_BITS) || rdpTable[pcSignature].reuseDistance == 0) { //if pc signature is invalid or never trained
-            if (numCores == 1) { //assume it will be reused soon in single core
-                etr[id] = 0;
-            } else {
-                etr[id] = INF_ETR; //more conservative in multicore (will not reuse)
+        //update ETR for the accessed line based on predictor's RD
+        if (pcSignature >= (1ULL << PC_SIGNATURE_BITS) || rdpTable[pcSignature].reuseDistance == 0) {
+            //for untrained or invalid signature: assume imminent reuse in single core, conservative in multicore
+            etr[id] = (numCores == 1) ? 0 : INF_ETR;
+        } else if (rdpTable[pcSignature].reuseDistance > MAX_RD) {
+            //predicted far reuse: give lowest priority
+            etr[id] = INF_ETR;
+        } else {
+            //candidate is within max RD — check if we should bypass it
+            uint32_t predictedETR = rdpTable[pcSignature].reuseDistance / GRANULARITY;
+            bool shouldBypass = true;
+
+            for (uint32_t w = 0; w < numWays; w++) { //checking to see if the ETR is worse than the rest of the lines
+                uint32_t lineId = set * numWays + w;
+                if (etr[lineId] < (int32_t)predictedETR) {
+                    shouldBypass = false;
+                    break;
+                }
             }
-        } else { //otherwise it is valid and predicted RD is nonzero
-            if (rdpTable[pcSignature].reuseDistance > MAX_RD) { //if the RD is above the threshold, unlikely to reuse
+            //bypassing helps to avoid filling the cache with useless lines
+            if (shouldBypass) {
+                //don't promote — it has worse reuse than all existing lines
                 etr[id] = INF_ETR;
+                return;
             } else {
-                etr[id] = rdpTable[pcSignature].reuseDistance / GRANULARITY; //calculate etr based on RD
+                //assign ETR based on predicted reuse distance
+                etr[id] = predictedETR;
             }
         }
     }
@@ -401,41 +416,33 @@ public:
         etr[id] = 0;
     }
     
-    //determining which line to evict when cache is full
+    //determining which line to evict when a new line needs to be inserted
+    //core eviction policy based on ETR
     template <typename C>
     uint32_t rank(const MemReq* req, C cands) {
-        // Find the line with minimum sharing first, then maximum absolute ETR value
-        uint32_t bestCand = -1; //best candidate line to evict
-        uint32_t minSharers = UINT32_MAX;
-        int32_t maxEtr = -1; //max estimated time remaining
+        uint32_t bestCand = -1; //id of best eviction candidate
+        int32_t maxEtr = -1; //max absolute ETR value seen
         
         for (auto ci = cands.begin(); ci != cands.end(); ci.inc()) {
             uint32_t candId = *ci;
             
-            // Skip invalid lines
+            // If invalid, select it right away for eviction
             if (!cc->isValid(candId)) {
                 bestCand = candId;
                 break;
             }
-            
-            // Get number of sharers for this line
-            uint32_t sharers = cc->numSharers(candId);
-            
             // Get absolute ETR value
             int32_t absEtr = abs(etr[candId]);
             
-            // Prioritize lines with fewer sharers
-            // if same number of sharers, choose the one with higher absolute ETR
-            // if sharers and ETR are same, choose lines that are further in the past
-            if (sharers < minSharers || 
-                (sharers == minSharers && absEtr > maxEtr) ||
-                (sharers == minSharers && absEtr == maxEtr && etr[candId] < 0)) {
-                minSharers = sharers;
+            //prioritize evicting highest absolute ETR first like in paper
+            //lastly, negative ETR like in paper
+            if (absEtr > maxEtr || 
+                (absEtr == maxEtr && etr[candId] < 0))
+                 {
                 maxEtr = absEtr;
                 bestCand = candId;
             }
         }
-        
         return bestCand;
     }
     
