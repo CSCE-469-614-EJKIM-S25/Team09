@@ -12,7 +12,7 @@ if [ "$#" -ne 2 ]; then
     echo "      -- Zach"
     echo "      -- Rodrigo"
     echo "      -- Brycen"
-    echo "    repl_policy: LRU LFU SRRIP ST-RRIP Mockingjay Vantage"
+    echo "    repl_policy: LRU LFU SRRIP RT-RRIP Mockingjay Vantage"
 else
     group_member=$1
     repl=$2
@@ -20,7 +20,7 @@ else
     # Define benchmarks for each group member
     case $group_member in
         "Zach")
-            benchmarks="gcc xalancbmk namd bodytrack swaptions soplex x264"
+            benchmarks="gcc xalan namd bodytrack swaptions soplex x264"
             ;;
         "Rodrigo")
             benchmarks="bzip2 hmmer calculix fluidanimate sjeng lbm"
@@ -34,14 +34,25 @@ else
             ;;
     esac
 
+    # List of PARSEC benchmarks that require _8c_simlarge suffix
+    parsec_benchmarks="blackscholes bodytrack fluidanimate streamcluster swaptions canneal x264"
+
     # Run the entire set of benchmarks in the background
     (
         # Loop through the selected benchmarks and execute them sequentially
         for bench in $benchmarks; do
+            # Check if the benchmark is a PARSEC benchmark
+            if echo "$parsec_benchmarks" | grep -q -w "$bench"; then
+                # For PARSEC benchmarks, use the _8c_simlarge variant
+                bench="${bench}_8c_simlarge"
+            fi
+
+            # Create the directory for output
             mkdir -p outputs/hw4/$repl/${bench}
-            # echo "./build/opt/zsim configs/hw4/$repl/${bench}.cfg > outputs/hw4/$repl/${bench}/${bench}.log 2>&1"
+
+            # Execute the benchmark without echoing the command to terminal
             ./build/opt/zsim configs/hw4/$repl/${bench}.cfg > outputs/hw4/$repl/${bench}/${bench}.log 2>&1 &
-            
+
             # Capture the PID of the zsim process
             zsim_pid=$!
             
