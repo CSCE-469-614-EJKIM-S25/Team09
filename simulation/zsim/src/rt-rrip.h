@@ -67,6 +67,10 @@ class RT_RRIPReplPolicy : public ReplPolicy {
                     }
                 }
 
+                if (filteredCands.empty()) {
+                    filteredCands = cands; // if no candidates, use all candidates
+                }
+
                 // RRIP
                 while(true) {
                     for (auto fi: filteredCands) {
