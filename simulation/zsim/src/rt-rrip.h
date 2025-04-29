@@ -62,7 +62,7 @@ class RT_RRIPReplPolicy : public ReplPolicy {
                 vector<uint32_t> filteredCands;
                 threshold = getThreshold(cands); // returns average recency time
                 for (auto ci = cands.begin(); ci != cands.end(); ci.inc()) {
-                    if (recencyTimeArray[*ci] >= threshold) {
+                    if (recencyTimeArray[*ci] <= threshold) {
                         filteredCands.push_back(*ci); // gets all candidate with recency time over the average
                     }
                 }
