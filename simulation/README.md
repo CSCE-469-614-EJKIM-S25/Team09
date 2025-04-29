@@ -1,5 +1,5 @@
 # casim
-Computer Architecture Simulation Infrastructure for CSCE 614 Computer Architecture
+Computer Architecture Simulation Infrastructure for CSCE 614 Computer Architecture Term Project: Team 09
 
 ##### 0. WSL Set up
 
@@ -43,5 +43,22 @@ $ scons -j4
 You need to compile the code each time you make a change.
 
 
+##### 4a. Run the entire project 
+
+```
+$ ./run-all
+```
+
+##### 4b. Run all Benchmarks for a replacement policy by group memeber
+
+```
+$ ./run-all-xpolicy <group memeber> <repl_policy>
+```
+
+##### 4c. Run Bencmark
+
+```
+$ ./run-simulation <suite> <benchmark> <repl_policy>
+```
 
 ###### For more information, check `zsim/README.md`

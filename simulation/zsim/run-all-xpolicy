@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# Run benchmarks associted with each group member
 # NOTE: This script does not output to terminal
 # ALL jobs run sequentially in background
 # USE PID to kill benchmark simulation. 

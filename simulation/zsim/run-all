@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# Run all benchmarks for all replacement policies
+# **NOTE: WILL RUN 3 Simuations at a time (ideal in WSL)
+
+for policy in LRU LFU SRRIP RT-RRIP Mockingjay Vantage; do
+    ./run-all-xpolicy Zach "$policy" &
+    ./run-all-xpolicy Rodrigo "$policy" &
+    ./run-all-xpolicy Brycen "$policy" &
+    wait  # Wait for all three to finish before continuing to the next policy
+done
+
+
+

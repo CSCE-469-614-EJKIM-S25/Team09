@@ -65,7 +65,7 @@ def main():
     spec = ["bzip2", "gcc", "mcf", "hmmer", "xalan", "cactusADM", 
             "leslie3d", "namd", "calculix", "sjeng", "libquantum", "soplex", "lbm"]
     parsec = ["blackscholes", "bodytrack", "fluidanimate", "streamcluster", "swaptions", "canneal", "x264"]
-    replc = ["LRU", "LFU", "SRRIP", "ST-RRIP", "WeiSub"]
+    replc = ["LRU", "LFU", "SRRIP", "RT-RRIP", "Mockingjay", ""]
     benchmarks = spec + parsec
 
     metrics = {
