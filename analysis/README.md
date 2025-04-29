@@ -19,3 +19,8 @@ source venv/bin/activate
 ```bash
 pip install -r requirements.txt
 ```
+
+### 4. Create Charts and Analyze Data
+
+```bash
+python main.py
