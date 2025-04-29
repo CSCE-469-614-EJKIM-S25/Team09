@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# Install dependencies and configuration for WSL enviroment 
 # to run this script: bash wsl-deps.sh
 # will prompt for password
 

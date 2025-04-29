@@ -1,0 +1,4 @@
+#!/bin/sh
+
+./simulation/zsim/run-all
+python /analysis/main.py
