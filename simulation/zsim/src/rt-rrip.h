@@ -67,6 +67,12 @@ class RT_RRIPReplPolicy : public ReplPolicy {
                     }
                 }
 
+                if (filteredCands.empty()) {
+                    for(auto ci = cands.begin(); ci != cands.end(); ci.inc()) {
+                        filteredCands.push_back(*ci);
+                    }
+                }
+
                 // RRIP
                 while(true) {
                     for (auto fi: filteredCands) {
