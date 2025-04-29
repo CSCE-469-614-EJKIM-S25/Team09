@@ -24,7 +24,7 @@ class RT_RRIPReplPolicy : public ReplPolicy {
                 isNewBlock = gm_calloc<bool>(numLines);
                 recencyTime = 0; // recency time of the block being accessed
                 threshold = 0; // threshold for recency time
-                // TODO: is new block flag
+
                 for (uint32_t i = 0; i < numLines; ++i) {
                     rrpvArray[i] = rrpvMax-1;
                     recencyTimeArray[i] = 0;
@@ -67,6 +67,12 @@ class RT_RRIPReplPolicy : public ReplPolicy {
                     }
                 }
 
+                if (filteredCands.empty()) {
+                    for(auto ci = cands.begin(); ci != cands.end(); ci.inc()) {
+                        filteredCands.push_back(*ci);
+                    }
+                }
+
                 // RRIP
                 while(true) {
                     for (auto fi: filteredCands) {
@@ -91,6 +97,7 @@ class RT_RRIPReplPolicy : public ReplPolicy {
                     count++;
                     totalRecencyTime += recencyTimeArray[*ci];
                 }
+                if (count == 0) return 0; // avoid division by zero
                 return totalRecencyTime / count; // average recency time
             }
 
