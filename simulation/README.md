@@ -11,6 +11,11 @@ https://github.com/CSCE-469-614-EJKIM-S25/Team09.git
 
 ##### 1. WSL Set up
 Navigate to Team09/simulations
+
+```
+cd Team09/simulation/
+```
+
 Use wsl-deps bash script to install dependencies and configure PIN API & benchmark scripts (they require x privileges)
 
 ```
