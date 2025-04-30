@@ -1,6 +1,5 @@
 # Term Project Team 09
-##### * Zach Assad, Brycen Craig, Rodrigo Orozco 
-
+##### * Zach Assad, Brycen Craig, Rodrigo Orozco
 This team repository is used to implement, analyze, and compare the Mockingjay and RT-RRIP cache replacement policies. The results are compared against the following policies in zsim: LFU, LRU, NRU, Rand, TreeLRU, Vantage, and SRRIP (implemnted in Homework 4). 
 
 
