@@ -2,6 +2,12 @@
 ##### * Zach Assad, Brycen Craig, Rodrigo Orozco
 This team repository is used to implement, analyze, and compare the Mockingjay and RT-RRIP cache replacement policies. The results are compared against the following policies in zsim: LFU, LRU, NRU, Rand, TreeLRU, Vantage, and SRRIP (implemnted in Homework 4). 
 
+##### Project Description
+Caching plays a critical role in overall system performance and the performance of the cache is largely affected by the type of caching policy used. The LLC (Last-Level Cache) is essential since it is the final level of cache before memory. The ideal cache replacement policy is known as Belady's MIN Policy which always evicts the cache block that will be used farthest in the future. The two policies RT-RRIP and Mockingjay work to mimic Belady's MIN Policy through reuse distance prediction.
+
+##### Project Goal
+The goal of this project is to implement, analyze, and compare two modern cache replacement policies --Mockingjay and RT-RRIP-- against several other cache replacement policies in zsim. 
+
 
 #### - Mockingjay (Reuse-Distance Prediction-Based, Re-reference Prediction-Based)
 Predicts the reuse distance of cache lines using sampled sets and program counter (PC) signatures.
@@ -12,7 +18,7 @@ This design improves cache efficiency for complex, irregular memory access patte
 
 
 #### - RT-RRIP (Re-reference Prediction-Based)
-Predicts re-reference intervals for cache lines using a combination of static RRPV counters and dynamic recency filtering.
+Predicts re-reference intervals for cache lines using a combination of static RRPV counters and recency filtering.
 It prioritizes evicting blocks that are both infrequently accessed (high RRPV) and older than the average access time.
 This design allows RT-RRIP to adapt better than plain SRRIP, improving cache decisions for workloads with changing reuse patterns.
 
