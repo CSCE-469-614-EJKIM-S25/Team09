@@ -10,7 +10,7 @@ https://github.com/CSCE-469-614-EJKIM-S25/Team09.git
 ```
 
 ##### 1. WSL Set up
-
+Navigate to Team09/simulations
 Use wsl-deps bash script to install dependencies and configure PIN API & benchmark scripts (they require x privileges)
 
 ```
@@ -29,23 +29,23 @@ zip -F benchmarks.zip --out single-benchmark.zip && unzip single-benchmark.zip &
 To set up the Python environment for the first time, run the following commands.
 
 ```
-$ python -m venv venv
-$ source venv/bin/activate
-$ pip install scons
+python3 -m venv venv
+source venv/bin/activate
+pip install scons
 ```
 
 Everytime you want to build or run zsim, you need to setup the environment variables first.
 
 ```
-$ source venv/bin/activate
-$ source setup_env
+source venv/bin/activate
+source setup_env
 ```
 
 ##### 3. Compile zsim
 
 ```
-$ cd zsim
-$ scons -j4
+cd zsim
+scons -j4
 ```
 
 You need to compile the code each time you make a change.
@@ -54,16 +54,17 @@ You need to compile the code each time you make a change.
 ##### 4a. Run the entire project 
 
 ```
-$ ./run-all
+./run-all
 ```
 
 ##### 4b. Run all Benchmarks for a replacement policy by group memeber
 
 group member: Zach, Rodrigo, Brycen
+
 repl_policy: LFU, LRU, Mockingjay, NRU, Rand, RT-RRIP, SRRIP, TreeLRU, Vantage
 
 ```
-$ ./run-all-xpolicy <group memeber> <repl_policy>
+./run-all-xpolicy <group memeber> <repl_policy>
 ```
 
 ##### 4c. Run Bencmark
@@ -77,7 +78,7 @@ PARSEC Benchmarks: blackscholes, bodytrack, canneal, fluidanimate, swaptions, x2
 repl_policy: LFU, LRU, Mockingjay, NRU, Rand, RT-RRIP, SRRIP, TreeLRU, Vantage
 
 ```
-$ ./run-simulation <suite> <benchmark> <repl_policy>
+./run-simulation <suite> <benchmark> <repl_policy>
 ```
 
 ###### For more information, check `zsim/README.md`
