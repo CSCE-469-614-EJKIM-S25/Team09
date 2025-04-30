@@ -1,0 +1,2020 @@
+# zsim stats
+===
+root: # Stats
+ contention: # Contention simulation stats
+  domain-0: # Domain stats
+   time: 7597629121 # Weave simulation time
+ time: # Simulator time breakdown
+  init: 373741433
+  bound: 115462087602
+  weave: 13010580460
+  ff: 0
+ trigger: 20000 # Reason for this stats dump
+ phase: 66766 # Simulated phases
+ westmere: # Core stats
+  westmere-0: # Core stats
+   cycles: 513479794 # Simulated unhalted cycles
+   cCycles: 8224183 # Cycles due to contention stalls
+   instrs: 790622823 # Simulated instructions
+   uops: 934855499 # Retired micro-ops
+   bbls: 80952419 # Basic blocks
+   approxInstrs: 76391 # Instrs with approx uop decoding
+   mispredBranches: 246478 # Mispredicted branches
+   condBranches: 61196054 # conditional branches
+  westmere-1: # Core stats
+   cycles: 598485908 # Simulated unhalted cycles
+   cCycles: 62894258 # Cycles due to contention stalls
+   instrs: 556032665 # Simulated instructions
+   uops: 665067699 # Retired micro-ops
+   bbls: 36061910 # Basic blocks
+   approxInstrs: 7014 # Instrs with approx uop decoding
+   mispredBranches: 241132 # Mispredicted branches
+   condBranches: 28213853 # conditional branches
+  westmere-2: # Core stats
+   cycles: 589947685 # Simulated unhalted cycles
+   cCycles: 58911142 # Cycles due to contention stalls
+   instrs: 592568956 # Simulated instructions
+   uops: 698901651 # Retired micro-ops
+   bbls: 44978575 # Basic blocks
+   approxInstrs: 75311 # Instrs with approx uop decoding
+   mispredBranches: 240480 # Mispredicted branches
+   condBranches: 37811491 # conditional branches
+  westmere-3: # Core stats
+   cycles: 589744170 # Simulated unhalted cycles
+   cCycles: 49047764 # Cycles due to contention stalls
+   instrs: 627558415 # Simulated instructions
+   uops: 733930931 # Retired micro-ops
+   bbls: 52754461 # Basic blocks
+   approxInstrs: 75156 # Instrs with approx uop decoding
+   mispredBranches: 247356 # Mispredicted branches
+   condBranches: 45587621 # conditional branches
+  westmere-4: # Core stats
+   cycles: 589713902 # Simulated unhalted cycles
+   cCycles: 61245517 # Cycles due to contention stalls
+   instrs: 558805707 # Simulated instructions
+   uops: 665087803 # Retired micro-ops
+   bbls: 37472413 # Basic blocks
+   approxInstrs: 75347 # Instrs with approx uop decoding
+   mispredBranches: 244148 # Mispredicted branches
+   condBranches: 30316115 # conditional branches
+  westmere-5: # Core stats
+   cycles: 589172090 # Simulated unhalted cycles
+   cCycles: 54255055 # Cycles due to contention stalls
+   instrs: 625609664 # Simulated instructions
+   uops: 731956652 # Retired micro-ops
+   bbls: 52318775 # Basic blocks
+   approxInstrs: 75345 # Instrs with approx uop decoding
+   mispredBranches: 240789 # Mispredicted branches
+   condBranches: 45149985 # conditional branches
+  westmere-6: # Core stats
+   cycles: 589687198 # Simulated unhalted cycles
+   cCycles: 52685780 # Cycles due to contention stalls
+   instrs: 610561667 # Simulated instructions
+   uops: 716920593 # Retired micro-ops
+   bbls: 48979072 # Basic blocks
+   approxInstrs: 75370 # Instrs with approx uop decoding
+   mispredBranches: 244268 # Mispredicted branches
+   condBranches: 41810325 # conditional branches
+  westmere-7: # Core stats
+   cycles: 588740334 # Simulated unhalted cycles
+   cCycles: 51263532 # Cycles due to contention stalls
+   instrs: 638291088 # Simulated instructions
+   uops: 744686821 # Retired micro-ops
+   bbls: 55139489 # Basic blocks
+   approxInstrs: 75029 # Instrs with approx uop decoding
+   mispredBranches: 240023 # Mispredicted branches
+   condBranches: 47964061 # conditional branches
+ l1i: # Cache stats
+  l1i-0: # Filter cache stats
+   fhGETS: 113405526 # Filtered GETS hits
+   fhGETX: 0 # Filtered GETX hits
+   hGETS: 24422 # GETS hits
+   hGETX: 0 # GETX hits
+   mGETS: 7906 # GETS misses
+   mGETXIM: 0 # GETX I->M misses
+   mGETXSM: 0 # GETX S->M misses (upgrade misses)
+   PUTS: 0 # Clean evictions (from lower level)
+   PUTX: 0 # Dirty evictions (from lower level)
+   INV: 7597 # Invalidates (from upper level)
+   INVX: 0 # Downgrades (from upper level)
+   FWD: 0 # Forwards (from upper level)
+   latGETnl: 441154 # GET request latency on next level
+   latGETnet: 0 # GET request latency on network to next level
+  l1i-1: # Filter cache stats
+   fhGETS: 68520506 # Filtered GETS hits
+   fhGETX: 0 # Filtered GETX hits
+   hGETS: 23693 # GETS hits
+   hGETX: 0 # GETX hits
+   mGETS: 19745 # GETS misses
+   mGETXIM: 0 # GETX I->M misses
+   mGETXSM: 0 # GETX S->M misses (upgrade misses)
+   PUTS: 0 # Clean evictions (from lower level)
+   PUTX: 0 # Dirty evictions (from lower level)
+   INV: 19559 # Invalidates (from upper level)
+   INVX: 0 # Downgrades (from upper level)
+   FWD: 0 # Forwards (from upper level)
+   latGETnl: 1976126 # GET request latency on next level
+   latGETnet: 0 # GET request latency on network to next level
+  l1i-2: # Filter cache stats
+   fhGETS: 77388289 # Filtered GETS hits
+   fhGETX: 0 # Filtered GETX hits
+   hGETS: 11790 # GETS hits
+   hGETX: 0 # GETX hits
+   mGETS: 7053 # GETS misses
+   mGETXIM: 0 # GETX I->M misses
+   mGETXSM: 0 # GETX S->M misses (upgrade misses)
+   PUTS: 0 # Clean evictions (from lower level)
+   PUTX: 0 # Dirty evictions (from lower level)
+   INV: 6918 # Invalidates (from upper level)
+   INVX: 0 # Downgrades (from upper level)
+   FWD: 0 # Forwards (from upper level)
+   latGETnl: 330252 # GET request latency on next level
+   latGETnet: 0 # GET request latency on network to next level
+  l1i-3: # Filter cache stats
+   fhGETS: 85199554 # Filtered GETS hits
+   fhGETX: 0 # Filtered GETX hits
+   hGETS: 11516 # GETS hits
+   hGETX: 0 # GETX hits
+   mGETS: 7015 # GETS misses
+   mGETXIM: 0 # GETX I->M misses
+   mGETXSM: 0 # GETX S->M misses (upgrade misses)
+   PUTS: 0 # Clean evictions (from lower level)
+   PUTX: 0 # Dirty evictions (from lower level)
+   INV: 6879 # Invalidates (from upper level)
+   INVX: 0 # Downgrades (from upper level)
+   FWD: 0 # Forwards (from upper level)
+   latGETnl: 317170 # GET request latency on next level
+   latGETnet: 0 # GET request latency on network to next level
+  l1i-4: # Filter cache stats
+   fhGETS: 69900179 # Filtered GETS hits
+   fhGETX: 0 # Filtered GETX hits
+   hGETS: 11801 # GETS hits
+   hGETX: 0 # GETX hits
+   mGETS: 7167 # GETS misses
+   mGETXIM: 0 # GETX I->M misses
+   mGETXSM: 0 # GETX S->M misses (upgrade misses)
+   PUTS: 0 # Clean evictions (from lower level)
+   PUTX: 0 # Dirty evictions (from lower level)
+   INV: 7031 # Invalidates (from upper level)
+   INVX: 0 # Downgrades (from upper level)
+   FWD: 0 # Forwards (from upper level)
+   latGETnl: 313518 # GET request latency on next level
+   latGETnet: 0 # GET request latency on network to next level
+  l1i-5: # Filter cache stats
+   fhGETS: 84730781 # Filtered GETS hits
+   fhGETX: 0 # Filtered GETX hits
+   hGETS: 12234 # GETS hits
+   hGETX: 0 # GETX hits
+   mGETS: 7090 # GETS misses
+   mGETXIM: 0 # GETX I->M misses
+   mGETXSM: 0 # GETX S->M misses (upgrade misses)
+   PUTS: 0 # Clean evictions (from lower level)
+   PUTX: 0 # Dirty evictions (from lower level)
+   INV: 6946 # Invalidates (from upper level)
+   INVX: 0 # Downgrades (from upper level)
+   FWD: 0 # Forwards (from upper level)
+   latGETnl: 312610 # GET request latency on next level
+   latGETnet: 0 # GET request latency on network to next level
+  l1i-6: # Filter cache stats
+   fhGETS: 81407904 # Filtered GETS hits
+   fhGETX: 0 # Filtered GETX hits
+   hGETS: 11646 # GETS hits
+   hGETX: 0 # GETX hits
+   mGETS: 7016 # GETS misses
+   mGETXIM: 0 # GETX I->M misses
+   mGETXSM: 0 # GETX S->M misses (upgrade misses)
+   PUTS: 0 # Clean evictions (from lower level)
+   PUTX: 0 # Dirty evictions (from lower level)
+   INV: 6872 # Invalidates (from upper level)
+   INVX: 0 # Downgrades (from upper level)
+   FWD: 0 # Forwards (from upper level)
+   latGETnl: 303344 # GET request latency on next level
+   latGETnet: 0 # GET request latency on network to next level
+  l1i-7: # Filter cache stats
+   fhGETS: 87548336 # Filtered GETS hits
+   fhGETX: 0 # Filtered GETX hits
+   hGETS: 11756 # GETS hits
+   hGETX: 0 # GETX hits
+   mGETS: 7028 # GETS misses
+   mGETXIM: 0 # GETX I->M misses
+   mGETXSM: 0 # GETX S->M misses (upgrade misses)
+   PUTS: 0 # Clean evictions (from lower level)
+   PUTX: 0 # Dirty evictions (from lower level)
+   INV: 6885 # Invalidates (from upper level)
+   INVX: 0 # Downgrades (from upper level)
+   FWD: 0 # Forwards (from upper level)
+   latGETnl: 301322 # GET request latency on next level
+   latGETnet: 0 # GET request latency on network to next level
+ l1d: # Cache stats
+  l1d-0: # Filter cache stats
+   fhGETS: 275669256 # Filtered GETS hits
+   fhGETX: 39605727 # Filtered GETX hits
+   hGETS: 27673238 # GETS hits
+   hGETX: 418635 # GETX hits
+   mGETS: 7964224 # GETS misses
+   mGETXIM: 170040 # GETX I->M misses
+   mGETXSM: 307947 # GETX S->M misses (upgrade misses)
+   PUTS: 0 # Clean evictions (from lower level)
+   PUTX: 0 # Dirty evictions (from lower level)
+   INV: 330552 # Invalidates (from upper level)
+   INVX: 320336 # Downgrades (from upper level)
+   FWD: 0 # Forwards (from upper level)
+   latGETnl: 314012184 # GET request latency on next level
+   latGETnet: 0 # GET request latency on network to next level
+  l1d-1: # Filter cache stats
+   fhGETS: 203040107 # Filtered GETS hits
+   fhGETX: 5866323 # Filtered GETX hits
+   hGETS: 27481516 # GETS hits
+   hGETX: 262678 # GETX hits
+   mGETS: 8165658 # GETS misses
+   mGETXIM: 30726 # GETX I->M misses
+   mGETXSM: 407606 # GETX S->M misses (upgrade misses)
+   PUTS: 0 # Clean evictions (from lower level)
+   PUTX: 0 # Dirty evictions (from lower level)
+   INV: 409707 # Invalidates (from upper level)
+   INVX: 400192 # Downgrades (from upper level)
+   FWD: 0 # Forwards (from upper level)
+   latGETnl: 508905224 # GET request latency on next level
+   latGETnet: 0 # GET request latency on network to next level
+  l1d-2: # Filter cache stats
+   fhGETS: 216105678 # Filtered GETS hits
+   fhGETX: 9400457 # Filtered GETX hits
+   hGETS: 26957917 # GETS hits
+   hGETX: 156232 # GETX hits
+   mGETS: 8032990 # GETS misses
+   mGETXIM: 29984 # GETX I->M misses
+   mGETXSM: 390390 # GETX S->M misses (upgrade misses)
+   PUTS: 0 # Clean evictions (from lower level)
+   PUTX: 0 # Dirty evictions (from lower level)
+   INV: 412978 # Invalidates (from upper level)
+   INVX: 404221 # Downgrades (from upper level)
+   FWD: 0 # Forwards (from upper level)
+   latGETnl: 480463638 # GET request latency on next level
+   latGETnet: 0 # GET request latency on network to next level
+  l1d-3: # Filter cache stats
+   fhGETS: 227454625 # Filtered GETS hits
+   fhGETX: 13312427 # Filtered GETX hits
+   hGETS: 27260262 # GETS hits
+   hGETX: 154662 # GETX hits
+   mGETS: 8022730 # GETS misses
+   mGETXIM: 30001 # GETX I->M misses
+   mGETXSM: 379716 # GETX S->M misses (upgrade misses)
+   PUTS: 0 # Clean evictions (from lower level)
+   PUTX: 0 # Dirty evictions (from lower level)
+   INV: 402834 # Invalidates (from upper level)
+   INVX: 391641 # Downgrades (from upper level)
+   FWD: 0 # Forwards (from upper level)
+   latGETnl: 460344049 # GET request latency on next level
+   latGETnet: 0 # GET request latency on network to next level
+  l1d-4: # Filter cache stats
+   fhGETS: 204798119 # Filtered GETS hits
+   fhGETX: 5647193 # Filtered GETX hits
+   hGETS: 27034559 # GETS hits
+   hGETX: 164214 # GETX hits
+   mGETS: 8018191 # GETS misses
+   mGETXIM: 29939 # GETX I->M misses
+   mGETXSM: 378530 # GETX S->M misses (upgrade misses)
+   PUTS: 0 # Clean evictions (from lower level)
+   PUTX: 0 # Dirty evictions (from lower level)
+   INV: 399987 # Invalidates (from upper level)
+   INVX: 391227 # Downgrades (from upper level)
+   FWD: 0 # Forwards (from upper level)
+   latGETnl: 497953905 # GET request latency on next level
+   latGETnet: 0 # GET request latency on network to next level
+  l1d-5: # Filter cache stats
+   fhGETS: 226822109 # Filtered GETS hits
+   fhGETX: 13078495 # Filtered GETX hits
+   hGETS: 27254568 # GETS hits
+   hGETX: 149143 # GETX hits
+   mGETS: 8033784 # GETS misses
+   mGETXIM: 30057 # GETX I->M misses
+   mGETXSM: 392058 # GETX S->M misses (upgrade misses)
+   PUTS: 0 # Clean evictions (from lower level)
+   PUTX: 0 # Dirty evictions (from lower level)
+   INV: 414864 # Invalidates (from upper level)
+   INVX: 405786 # Downgrades (from upper level)
+   FWD: 0 # Forwards (from upper level)
+   latGETnl: 460137795 # GET request latency on next level
+   latGETnet: 0 # GET request latency on network to next level
+  l1d-6: # Filter cache stats
+   fhGETS: 222053340 # Filtered GETS hits
+   fhGETX: 11403720 # Filtered GETX hits
+   hGETS: 26994241 # GETS hits
+   hGETX: 158223 # GETX hits
+   mGETS: 8033902 # GETS misses
+   mGETXIM: 30296 # GETX I->M misses
+   mGETXSM: 392577 # GETX S->M misses (upgrade misses)
+   PUTS: 0 # Clean evictions (from lower level)
+   PUTX: 0 # Dirty evictions (from lower level)
+   INV: 415107 # Invalidates (from upper level)
+   INVX: 404109 # Downgrades (from upper level)
+   FWD: 0 # Forwards (from upper level)
+   latGETnl: 470717900 # GET request latency on next level
+   latGETnet: 0 # GET request latency on network to next level
+  l1d-7: # Filter cache stats
+   fhGETS: 231408035 # Filtered GETS hits
+   fhGETX: 14552568 # Filtered GETX hits
+   hGETS: 26962066 # GETS hits
+   hGETX: 175687 # GETX hits
+   mGETS: 7953018 # GETS misses
+   mGETXIM: 29829 # GETX I->M misses
+   mGETXSM: 309903 # GETX S->M misses (upgrade misses)
+   PUTS: 0 # Clean evictions (from lower level)
+   PUTX: 0 # Dirty evictions (from lower level)
+   INV: 331525 # Invalidates (from upper level)
+   INVX: 320699 # Downgrades (from upper level)
+   FWD: 0 # Forwards (from upper level)
+   latGETnl: 448542557 # GET request latency on next level
+   latGETnet: 0 # GET request latency on network to next level
+ l2: # Cache stats
+  l2-0: # Cache stats
+   hGETS: 19679 # GETS hits
+   hGETX: 4249 # GETX hits
+   mGETS: 7952451 # GETS misses
+   mGETXIM: 167334 # GETX I->M misses
+   mGETXSM: 306404 # GETX S->M misses (upgrade misses)
+   PUTS: 7624617 # Clean evictions (from lower level)
+   PUTX: 188753 # Dirty evictions (from lower level)
+   INV: 339546 # Invalidates (from upper level)
+   INVX: 460610 # Downgrades (from upper level)
+   FWD: 0 # Forwards (from upper level)
+   latGETnl: 229952168 # GET request latency on next level
+   latGETnet: 0 # GET request latency on network to next level
+  l2-1: # Cache stats
+   hGETS: 65646 # GETS hits
+   hGETX: 4766 # GETX hits
+   mGETS: 8119757 # GETS misses
+   mGETXIM: 27509 # GETX I->M misses
+   mGETXSM: 406057 # GETX S->M misses (upgrade misses)
+   PUTS: 7673417 # Clean evictions (from lower level)
+   PUTX: 123826 # Dirty evictions (from lower level)
+   INV: 470361 # Invalidates (from upper level)
+   INVX: 547588 # Downgrades (from upper level)
+   FWD: 0 # Forwards (from upper level)
+   latGETnl: 424644000 # GET request latency on next level
+   latGETnet: 0 # GET request latency on network to next level
+  l2-2: # Cache stats
+   hGETS: 22698 # GETS hits
+   hGETX: 3781 # GETX hits
+   mGETS: 8017345 # GETS misses
+   mGETXIM: 27790 # GETX I->M misses
+   mGETXSM: 388803 # GETX S->M misses (upgrade misses)
+   PUTS: 7621176 # Clean evictions (from lower level)
+   PUTX: 39909 # Dirty evictions (from lower level)
+   INV: 459876 # Invalidates (from upper level)
+   INVX: 561224 # Downgrades (from upper level)
+   FWD: 0 # Forwards (from upper level)
+   latGETnl: 396189720 # GET request latency on next level
+   latGETnet: 0 # GET request latency on network to next level
+  l2-3: # Cache stats
+   hGETS: 24751 # GETS hits
+   hGETX: 3010 # GETX hits
+   mGETS: 8004994 # GETS misses
+   mGETXIM: 28530 # GETX I->M misses
+   mGETXSM: 378177 # GETX S->M misses (upgrade misses)
+   PUTS: 7621018 # Clean evictions (from lower level)
+   PUTX: 39947 # Dirty evictions (from lower level)
+   INV: 454980 # Invalidates (from upper level)
+   INVX: 543366 # Downgrades (from upper level)
+   FWD: 0 # Forwards (from upper level)
+   latGETnl: 376266599 # GET request latency on next level
+   latGETnet: 0 # GET request latency on network to next level
+  l2-4: # Cache stats
+   hGETS: 18861 # GETS hits
+   hGETX: 4112 # GETX hits
+   mGETS: 8006497 # GETS misses
+   mGETXIM: 27407 # GETX I->M misses
+   mGETXSM: 376950 # GETX S->M misses (upgrade misses)
+   PUTS: 7618824 # Clean evictions (from lower level)
+   PUTX: 40180 # Dirty evictions (from lower level)
+   INV: 451599 # Invalidates (from upper level)
+   INVX: 542868 # Downgrades (from upper level)
+   FWD: 0 # Forwards (from upper level)
+   latGETnl: 413929153 # GET request latency on next level
+   latGETnet: 0 # GET request latency on network to next level
+  l2-5: # Cache stats
+   hGETS: 23228 # GETS hits
+   hGETX: 3402 # GETX hits
+   mGETS: 8017646 # GETS misses
+   mGETXIM: 28268 # GETX I->M misses
+   mGETXSM: 390445 # GETX S->M misses (upgrade misses)
+   PUTS: 7619850 # Clean evictions (from lower level)
+   PUTX: 40280 # Dirty evictions (from lower level)
+   INV: 448509 # Invalidates (from upper level)
+   INVX: 559864 # Downgrades (from upper level)
+   FWD: 0 # Forwards (from upper level)
+   latGETnl: 375820515 # GET request latency on next level
+   latGETnet: 0 # GET request latency on network to next level
+  l2-6: # Cache stats
+   hGETS: 24944 # GETS hits
+   hGETX: 2720 # GETX hits
+   mGETS: 8015974 # GETS misses
+   mGETXIM: 29141 # GETX I->M misses
+   mGETXSM: 391012 # GETX S->M misses (upgrade misses)
+   PUTS: 7620104 # Clean evictions (from lower level)
+   PUTX: 40252 # Dirty evictions (from lower level)
+   INV: 452427 # Invalidates (from upper level)
+   INVX: 552506 # Downgrades (from upper level)
+   FWD: 0 # Forwards (from upper level)
+   latGETnl: 386383334 # GET request latency on next level
+   latGETnet: 0 # GET request latency on network to next level
+  l2-7: # Cache stats
+   hGETS: 23298 # GETS hits
+   hGETX: 1944 # GETX hits
+   mGETS: 7936748 # GETS misses
+   mGETXIM: 29249 # GETX I->M misses
+   mGETXSM: 308539 # GETX S->M misses (upgrade misses)
+   PUTS: 7621430 # Clean evictions (from lower level)
+   PUTX: 40341 # Dirty evictions (from lower level)
+   INV: 341857 # Invalidates (from upper level)
+   INVX: 466054 # Downgrades (from upper level)
+   FWD: 0 # Forwards (from upper level)
+   latGETnl: 365846099 # GET request latency on next level
+   latGETnet: 0 # GET request latency on network to next level
+ l3: # Cache stats
+  l3-0b0: # Cache stats
+   hGETS: 6362519 # GETS hits
+   hGETX: 267621 # GETX hits
+   mGETS: 1648531 # GETS misses
+   mGETXIM: 23568 # GETX I->M misses
+   mGETXSM: 0 # GETX S->M misses (upgrade misses)
+   PUTS: 7751826 # Clean evictions (from lower level)
+   PUTX: 58435 # Dirty evictions (from lower level)
+   INV: 0 # Invalidates (from upper level)
+   INVX: 0 # Downgrades (from upper level)
+   FWD: 0 # Forwards (from upper level)
+   latGETnl: 150488910 # GET request latency on next level
+   latGETnet: 0 # GET request latency on network to next level
+   part: # Vantage replacement policy stats
+    ffaProms: 197282 # Promotions from unmanaged region
+    updCycles: 667650000 # Cycles of updates experienced on size-cycle counters
+    part-0: # Partition stats
+     sz: 8251 # Actual size
+     xSz: 11083 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 12288 # Target size
+     stTgtSz: 12288 # Short-term target size (used with smoothedTransients)
+     hits: 4015706 # Hits
+     misses: 26039 # Misses
+     dems: 11295 # Demotions
+     evs: 7608 # Evictions
+     szCycles: 5115024520000 # Cumulative per-cycle sum of sz
+     xSzCycles: 7330126030000 # Cumulative per-cycle sum of xSz
+    part-1: # Partition stats
+     sz: 908 # Actual size
+     xSz: 954 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 564015 # Hits
+     misses: 293849 # Misses
+     dems: 324588 # Demotions
+     evs: 1 # Evictions
+     szCycles: 554336930000 # Cumulative per-cycle sum of sz
+     xSzCycles: 577142190000 # Cumulative per-cycle sum of xSz
+    part-2: # Partition stats
+     sz: 890 # Actual size
+     xSz: 679 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 332897 # Hits
+     misses: 280871 # Misses
+     dems: 324164 # Demotions
+     evs: 0 # Evictions
+     szCycles: 548054400000 # Cumulative per-cycle sum of sz
+     xSzCycles: 395917560000 # Cumulative per-cycle sum of xSz
+    part-3: # Partition stats
+     sz: 875 # Actual size
+     xSz: 643 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 317916 # Hits
+     misses: 284918 # Misses
+     dems: 319604 # Demotions
+     evs: 0 # Evictions
+     szCycles: 537637550000 # Cumulative per-cycle sum of sz
+     xSzCycles: 379291170000 # Cumulative per-cycle sum of xSz
+    part-4: # Partition stats
+     sz: 916 # Actual size
+     xSz: 640 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 322293 # Hits
+     misses: 279267 # Misses
+     dems: 315745 # Demotions
+     evs: 0 # Evictions
+     szCycles: 546410260000 # Cumulative per-cycle sum of sz
+     xSzCycles: 374251680000 # Cumulative per-cycle sum of xSz
+    part-5: # Partition stats
+     sz: 900 # Actual size
+     xSz: 692 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 347692 # Hits
+     misses: 264589 # Misses
+     dems: 298111 # Demotions
+     evs: 1792 # Evictions
+     szCycles: 571778350000 # Cumulative per-cycle sum of sz
+     xSzCycles: 408495430000 # Cumulative per-cycle sum of xSz
+    part-6: # Partition stats
+     sz: 1058 # Actual size
+     xSz: 781 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 1024 # Target size
+     stTgtSz: 1024 # Short-term target size (used with smoothedTransients)
+     hits: 293177 # Hits
+     misses: 231879 # Misses
+     dems: 239201 # Demotions
+     evs: 469 # Evictions
+     szCycles: 614863730000 # Cumulative per-cycle sum of sz
+     xSzCycles: 454937830000 # Cumulative per-cycle sum of xSz
+    part-7: # Partition stats
+     sz: 954 # Actual size
+     xSz: 912 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 1600 # Target size
+     stTgtSz: 1600 # Short-term target size (used with smoothedTransients)
+     hits: 436444 # Hits
+     misses: 10687 # Misses
+     dems: 8594 # Demotions
+     evs: 3457 # Evictions
+     szCycles: 546307580000 # Cumulative per-cycle sum of sz
+     xSzCycles: 527156390000 # Cumulative per-cycle sum of xSz
+    part-8: # Partition stats
+     sz: 1632 # Actual size
+     xSz: 0 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 0 # Target size
+     stTgtSz: 0 # Short-term target size (used with smoothedTransients)
+     hits: 0 # Hits
+     misses: 0 # Misses
+     dems: 0 # Demotions
+     evs: 1658772 # Evictions
+     szCycles: 1904364280000 # Cumulative per-cycle sum of sz
+     xSzCycles: 491459320000 # Cumulative per-cycle sum of xSz
+  l3-0b1: # Cache stats
+   hGETS: 5428703 # GETS hits
+   hGETX: 77021 # GETX hits
+   mGETS: 1571467 # GETS misses
+   mGETXIM: 20948 # GETX I->M misses
+   mGETXSM: 0 # GETX S->M misses (upgrade misses)
+   PUTS: 6785694 # Clean evictions (from lower level)
+   PUTX: 61677 # Dirty evictions (from lower level)
+   INV: 0 # Invalidates (from upper level)
+   INVX: 0 # Downgrades (from upper level)
+   FWD: 0 # Forwards (from upper level)
+   latGETnl: 143317350 # GET request latency on next level
+   latGETnet: 0 # GET request latency on network to next level
+   part: # Vantage replacement policy stats
+    ffaProms: 27706 # Promotions from unmanaged region
+    updCycles: 667650000 # Cycles of updates experienced on size-cycle counters
+    part-0: # Partition stats
+     sz: 8373 # Actual size
+     xSz: 11449 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 9216 # Target size
+     stTgtSz: 9216 # Short-term target size (used with smoothedTransients)
+     hits: 3495056 # Hits
+     misses: 31394 # Misses
+     dems: 11291 # Demotions
+     evs: 12609 # Evictions
+     szCycles: 5217297090000 # Cumulative per-cycle sum of sz
+     xSzCycles: 7567037260000 # Cumulative per-cycle sum of xSz
+    part-1: # Partition stats
+     sz: 898 # Actual size
+     xSz: 689 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 261143 # Hits
+     misses: 301985 # Misses
+     dems: 305298 # Demotions
+     evs: 4 # Evictions
+     szCycles: 565765260000 # Cumulative per-cycle sum of sz
+     xSzCycles: 411195500000 # Cumulative per-cycle sum of xSz
+    part-2: # Partition stats
+     sz: 1436 # Actual size
+     xSz: 884 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 1600 # Target size
+     stTgtSz: 1600 # Short-term target size (used with smoothedTransients)
+     hits: 493572 # Hits
+     misses: 67424 # Misses
+     dems: 59429 # Demotions
+     evs: 9312 # Evictions
+     szCycles: 805712030000 # Cumulative per-cycle sum of sz
+     xSzCycles: 495158160000 # Cumulative per-cycle sum of xSz
+    part-3: # Partition stats
+     sz: 889 # Actual size
+     xSz: 606 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 261487 # Hits
+     misses: 292718 # Misses
+     dems: 297404 # Demotions
+     evs: 0 # Evictions
+     szCycles: 543264010000 # Cumulative per-cycle sum of sz
+     xSzCycles: 354771840000 # Cumulative per-cycle sum of xSz
+    part-4: # Partition stats
+     sz: 913 # Actual size
+     xSz: 616 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 259436 # Hits
+     misses: 303763 # Misses
+     dems: 308467 # Demotions
+     evs: 0 # Evictions
+     szCycles: 560416520000 # Cumulative per-cycle sum of sz
+     xSzCycles: 366904780000 # Cumulative per-cycle sum of xSz
+    part-5: # Partition stats
+     sz: 1508 # Actual size
+     xSz: 857 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 4096 # Target size
+     stTgtSz: 4096 # Short-term target size (used with smoothedTransients)
+     hits: 558632 # Hits
+     misses: 25278 # Misses
+     dems: 11297 # Demotions
+     evs: 14850 # Evictions
+     szCycles: 871921050000 # Cumulative per-cycle sum of sz
+     xSzCycles: 490792790000 # Cumulative per-cycle sum of xSz
+    part-6: # Partition stats
+     sz: 599 # Actual size
+     xSz: 611 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 132001 # Hits
+     misses: 297384 # Misses
+     dems: 300570 # Demotions
+     evs: 0 # Evictions
+     szCycles: 351117370000 # Cumulative per-cycle sum of sz
+     xSzCycles: 353191250000 # Cumulative per-cycle sum of xSz
+    part-7: # Partition stats
+     sz: 555 # Actual size
+     xSz: 672 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 44397 # Hits
+     misses: 272469 # Misses
+     dems: 273384 # Demotions
+     evs: 1035 # Evictions
+     szCycles: 335401820000 # Cumulative per-cycle sum of sz
+     xSzCycles: 408008110000 # Cumulative per-cycle sum of xSz
+    part-8: # Partition stats
+     sz: 1213 # Actual size
+     xSz: 0 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 0 # Target size
+     stTgtSz: 0 # Short-term target size (used with smoothedTransients)
+     hits: 0 # Hits
+     misses: 0 # Misses
+     dems: 0 # Demotions
+     evs: 1554605 # Evictions
+     szCycles: 1687882450000 # Cumulative per-cycle sum of sz
+     xSzCycles: 491717910000 # Cumulative per-cycle sum of xSz
+  l3-0b2: # Cache stats
+   hGETS: 5508498 # GETS hits
+   hGETX: 568326 # GETX hits
+   mGETS: 1894108 # GETS misses
+   mGETXIM: 23301 # GETX I->M misses
+   mGETXSM: 0 # GETX S->M misses (upgrade misses)
+   PUTS: 6802444 # Clean evictions (from lower level)
+   PUTX: 59038 # Dirty evictions (from lower level)
+   INV: 0 # Invalidates (from upper level)
+   INVX: 0 # Downgrades (from upper level)
+   FWD: 0 # Forwards (from upper level)
+   latGETnl: 172566810 # GET request latency on next level
+   latGETnet: 0 # GET request latency on network to next level
+   part: # Vantage replacement policy stats
+    ffaProms: 37142 # Promotions from unmanaged region
+    updCycles: 667650000 # Cycles of updates experienced on size-cycle counters
+    part-0: # Partition stats
+     sz: 9108 # Actual size
+     xSz: 11934 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 13888 # Target size
+     stTgtSz: 13888 # Short-term target size (used with smoothedTransients)
+     hits: 4643800 # Hits
+     misses: 21955 # Misses
+     dems: 11296 # Demotions
+     evs: 2454 # Evictions
+     szCycles: 5594693630000 # Cumulative per-cycle sum of sz
+     xSzCycles: 7805415280000 # Cumulative per-cycle sum of xSz
+    part-1: # Partition stats
+     sz: 837 # Actual size
+     xSz: 710 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 256276 # Hits
+     misses: 282420 # Misses
+     dems: 286278 # Demotions
+     evs: 0 # Evictions
+     szCycles: 512167780000 # Cumulative per-cycle sum of sz
+     xSzCycles: 421365870000 # Cumulative per-cycle sum of xSz
+    part-2: # Partition stats
+     sz: 833 # Actual size
+     xSz: 643 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 253028 # Hits
+     misses: 276703 # Misses
+     dems: 281185 # Demotions
+     evs: 0 # Evictions
+     szCycles: 511279480000 # Cumulative per-cycle sum of sz
+     xSzCycles: 387507090000 # Cumulative per-cycle sum of xSz
+    part-3: # Partition stats
+     sz: 832 # Actual size
+     xSz: 616 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 256074 # Hits
+     misses: 272425 # Misses
+     dems: 277696 # Demotions
+     evs: 0 # Evictions
+     szCycles: 507601450000 # Cumulative per-cycle sum of sz
+     xSzCycles: 367354480000 # Cumulative per-cycle sum of xSz
+    part-4: # Partition stats
+     sz: 838 # Actual size
+     xSz: 610 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 255595 # Hits
+     misses: 271854 # Misses
+     dems: 277767 # Demotions
+     evs: 0 # Evictions
+     szCycles: 512966530000 # Cumulative per-cycle sum of sz
+     xSzCycles: 361662900000 # Cumulative per-cycle sum of xSz
+    part-5: # Partition stats
+     sz: 836 # Actual size
+     xSz: 612 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 254015 # Hits
+     misses: 265070 # Misses
+     dems: 270001 # Demotions
+     evs: 0 # Evictions
+     szCycles: 499903790000 # Cumulative per-cycle sum of sz
+     xSzCycles: 357598290000 # Cumulative per-cycle sum of xSz
+    part-6: # Partition stats
+     sz: 532 # Actual size
+     xSz: 612 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 129993 # Hits
+     misses: 268149 # Misses
+     dems: 272241 # Demotions
+     evs: 0 # Evictions
+     szCycles: 332816040000 # Cumulative per-cycle sum of sz
+     xSzCycles: 358066160000 # Cumulative per-cycle sum of xSz
+    part-7: # Partition stats
+     sz: 533 # Actual size
+     xSz: 647 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 28043 # Hits
+     misses: 258833 # Misses
+     dems: 261118 # Demotions
+     evs: 166 # Evictions
+     szCycles: 315170000000 # Cumulative per-cycle sum of sz
+     xSzCycles: 388414550000 # Cumulative per-cycle sum of xSz
+    part-8: # Partition stats
+     sz: 2035 # Actual size
+     xSz: 0 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 0 # Target size
+     stTgtSz: 0 # Short-term target size (used with smoothedTransients)
+     hits: 0 # Hits
+     misses: 0 # Misses
+     dems: 0 # Demotions
+     evs: 1914789 # Evictions
+     szCycles: 2152178900000 # Cumulative per-cycle sum of sz
+     xSzCycles: 491392980000 # Cumulative per-cycle sum of xSz
+  l3-0b3: # Cache stats
+   hGETS: 5674079 # GETS hits
+   hGETX: 734339 # GETX hits
+   mGETS: 1900860 # GETS misses
+   mGETXIM: 23968 # GETX I->M misses
+   mGETXSM: 0 # GETX S->M misses (upgrade misses)
+   PUTS: 6805730 # Clean evictions (from lower level)
+   PUTX: 57917 # Dirty evictions (from lower level)
+   INV: 0 # Invalidates (from upper level)
+   INVX: 0 # Downgrades (from upper level)
+   FWD: 0 # Forwards (from upper level)
+   latGETnl: 173234520 # GET request latency on next level
+   latGETnet: 0 # GET request latency on network to next level
+   part: # Vantage replacement policy stats
+    ffaProms: 35532 # Promotions from unmanaged region
+    updCycles: 667650000 # Cycles of updates experienced on size-cycle counters
+    part-0: # Partition stats
+     sz: 9043 # Actual size
+     xSz: 11900 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 13888 # Target size
+     stTgtSz: 13888 # Short-term target size (used with smoothedTransients)
+     hits: 3532962 # Hits
+     misses: 20967 # Misses
+     dems: 11294 # Demotions
+     evs: 1542 # Evictions
+     szCycles: 5559412920000 # Cumulative per-cycle sum of sz
+     xSzCycles: 7788121520000 # Cumulative per-cycle sum of xSz
+    part-1: # Partition stats
+     sz: 846 # Actual size
+     xSz: 723 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 260357 # Hits
+     misses: 286577 # Misses
+     dems: 290390 # Demotions
+     evs: 0 # Evictions
+     szCycles: 517483950000 # Cumulative per-cycle sum of sz
+     xSzCycles: 426437230000 # Cumulative per-cycle sum of xSz
+    part-2: # Partition stats
+     sz: 833 # Actual size
+     xSz: 637 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 257860 # Hits
+     misses: 277694 # Misses
+     dems: 282049 # Demotions
+     evs: 0 # Evictions
+     szCycles: 512346740000 # Cumulative per-cycle sum of sz
+     xSzCycles: 386081480000 # Cumulative per-cycle sum of xSz
+    part-3: # Partition stats
+     sz: 831 # Actual size
+     xSz: 626 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 258907 # Hits
+     misses: 274579 # Misses
+     dems: 279762 # Demotions
+     evs: 0 # Evictions
+     szCycles: 508620040000 # Cumulative per-cycle sum of sz
+     xSzCycles: 373479590000 # Cumulative per-cycle sum of xSz
+    part-4: # Partition stats
+     sz: 849 # Actual size
+     xSz: 631 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 259535 # Hits
+     misses: 273985 # Misses
+     dems: 279280 # Demotions
+     evs: 0 # Evictions
+     szCycles: 517092160000 # Cumulative per-cycle sum of sz
+     xSzCycles: 369214750000 # Cumulative per-cycle sum of xSz
+    part-5: # Partition stats
+     sz: 827 # Actual size
+     xSz: 605 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 1673442 # Hits
+     misses: 263767 # Misses
+     dems: 267933 # Demotions
+     evs: 0 # Evictions
+     szCycles: 516212360000 # Cumulative per-cycle sum of sz
+     xSzCycles: 358255310000 # Cumulative per-cycle sum of xSz
+    part-6: # Partition stats
+     sz: 540 # Actual size
+     xSz: 611 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 139874 # Hits
+     misses: 264451 # Misses
+     dems: 268474 # Demotions
+     evs: 0 # Evictions
+     szCycles: 331720270000 # Cumulative per-cycle sum of sz
+     xSzCycles: 356255040000 # Cumulative per-cycle sum of xSz
+    part-7: # Partition stats
+     sz: 534 # Actual size
+     xSz: 651 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 25481 # Hits
+     misses: 262808 # Misses
+     dems: 265242 # Demotions
+     evs: 91 # Evictions
+     szCycles: 315664280000 # Cumulative per-cycle sum of sz
+     xSzCycles: 389424010000 # Cumulative per-cycle sum of xSz
+    part-8: # Partition stats
+     sz: 2081 # Actual size
+     xSz: 0 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 0 # Target size
+     stTgtSz: 0 # Short-term target size (used with smoothedTransients)
+     hits: 0 # Hits
+     misses: 0 # Misses
+     dems: 0 # Demotions
+     evs: 1923195 # Evictions
+     szCycles: 2160224880000 # Cumulative per-cycle sum of sz
+     xSzCycles: 491508670000 # Cumulative per-cycle sum of xSz
+  l3-0b4: # Cache stats
+   hGETS: 5653084 # GETS hits
+   hGETX: 713081 # GETX hits
+   mGETS: 1886556 # GETS misses
+   mGETXIM: 22261 # GETX I->M misses
+   mGETXSM: 0 # GETX S->M misses (upgrade misses)
+   PUTS: 6801263 # Clean evictions (from lower level)
+   PUTX: 59542 # Dirty evictions (from lower level)
+   INV: 0 # Invalidates (from upper level)
+   INVX: 0 # Downgrades (from upper level)
+   FWD: 0 # Forwards (from upper level)
+   latGETnl: 171793530 # GET request latency on next level
+   latGETnet: 0 # GET request latency on network to next level
+   part: # Vantage replacement policy stats
+    ffaProms: 37554 # Promotions from unmanaged region
+    updCycles: 667650000 # Cycles of updates experienced on size-cycle counters
+    part-0: # Partition stats
+     sz: 9123 # Actual size
+     xSz: 11977 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 13888 # Target size
+     stTgtSz: 13888 # Short-term target size (used with smoothedTransients)
+     hits: 3560066 # Hits
+     misses: 21418 # Misses
+     dems: 11293 # Demotions
+     evs: 1907 # Evictions
+     szCycles: 5605071420000 # Cumulative per-cycle sum of sz
+     xSzCycles: 7828953660000 # Cumulative per-cycle sum of xSz
+    part-1: # Partition stats
+     sz: 855 # Actual size
+     xSz: 701 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 254683 # Hits
+     misses: 281515 # Misses
+     dems: 285252 # Demotions
+     evs: 0 # Evictions
+     szCycles: 512272350000 # Cumulative per-cycle sum of sz
+     xSzCycles: 416829080000 # Cumulative per-cycle sum of xSz
+    part-2: # Partition stats
+     sz: 836 # Actual size
+     xSz: 618 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 254799 # Hits
+     misses: 271757 # Misses
+     dems: 276885 # Demotions
+     evs: 0 # Evictions
+     szCycles: 509567320000 # Cumulative per-cycle sum of sz
+     xSzCycles: 373883500000 # Cumulative per-cycle sum of xSz
+    part-3: # Partition stats
+     sz: 820 # Actual size
+     xSz: 608 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 261193 # Hits
+     misses: 269811 # Misses
+     dems: 275562 # Demotions
+     evs: 0 # Evictions
+     szCycles: 502917380000 # Cumulative per-cycle sum of sz
+     xSzCycles: 363049090000 # Cumulative per-cycle sum of xSz
+    part-4: # Partition stats
+     sz: 840 # Actual size
+     xSz: 617 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 1623884 # Hits
+     misses: 269688 # Misses
+     dems: 275259 # Demotions
+     evs: 0 # Evictions
+     szCycles: 516238020000 # Cumulative per-cycle sum of sz
+     xSzCycles: 364040630000 # Cumulative per-cycle sum of xSz
+    part-5: # Partition stats
+     sz: 827 # Actual size
+     xSz: 611 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 254540 # Hits
+     misses: 267306 # Misses
+     dems: 272238 # Demotions
+     evs: 0 # Evictions
+     szCycles: 503115750000 # Cumulative per-cycle sum of sz
+     xSzCycles: 357192220000 # Cumulative per-cycle sum of xSz
+    part-6: # Partition stats
+     sz: 576 # Actual size
+     xSz: 612 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 129891 # Hits
+     misses: 269464 # Misses
+     dems: 273334 # Demotions
+     evs: 0 # Evictions
+     szCycles: 332402420000 # Cumulative per-cycle sum of sz
+     xSzCycles: 358385260000 # Cumulative per-cycle sum of xSz
+    part-7: # Partition stats
+     sz: 543 # Actual size
+     xSz: 640 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 27109 # Hits
+     misses: 257858 # Misses
+     dems: 260086 # Demotions
+     evs: 135 # Evictions
+     szCycles: 315214930000 # Cumulative per-cycle sum of sz
+     xSzCycles: 384815710000 # Cumulative per-cycle sum of xSz
+    part-8: # Partition stats
+     sz: 1964 # Actual size
+     xSz: 0 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 0 # Target size
+     stTgtSz: 0 # Short-term target size (used with smoothedTransients)
+     hits: 0 # Hits
+     misses: 0 # Misses
+     dems: 0 # Demotions
+     evs: 1906775 # Evictions
+     szCycles: 2141978010000 # Cumulative per-cycle sum of sz
+     xSzCycles: 491628450000 # Cumulative per-cycle sum of xSz
+  l3-0b5: # Cache stats
+   hGETS: 5681459 # GETS hits
+   hGETX: 734042 # GETX hits
+   mGETS: 1882476 # GETS misses
+   mGETXIM: 22469 # GETX I->M misses
+   mGETXSM: 0 # GETX S->M misses (upgrade misses)
+   PUTS: 6800949 # Clean evictions (from lower level)
+   PUTX: 59808 # Dirty evictions (from lower level)
+   INV: 0 # Invalidates (from upper level)
+   INVX: 0 # Downgrades (from upper level)
+   FWD: 0 # Forwards (from upper level)
+   latGETnl: 171445050 # GET request latency on next level
+   latGETnet: 0 # GET request latency on network to next level
+   part: # Vantage replacement policy stats
+    ffaProms: 38216 # Promotions from unmanaged region
+    updCycles: 667650000 # Cycles of updates experienced on size-cycle counters
+    part-0: # Partition stats
+     sz: 9103 # Actual size
+     xSz: 11969 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 13888 # Target size
+     stTgtSz: 13888 # Short-term target size (used with smoothedTransients)
+     hits: 3556516 # Hits
+     misses: 21775 # Misses
+     dems: 11299 # Demotions
+     evs: 2267 # Evictions
+     szCycles: 5596208710000 # Cumulative per-cycle sum of sz
+     xSzCycles: 7828439240000 # Cumulative per-cycle sum of xSz
+    part-1: # Partition stats
+     sz: 858 # Actual size
+     xSz: 711 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 1665161 # Hits
+     misses: 281829 # Misses
+     dems: 285702 # Demotions
+     evs: 0 # Evictions
+     szCycles: 517876820000 # Cumulative per-cycle sum of sz
+     xSzCycles: 418481330000 # Cumulative per-cycle sum of xSz
+    part-2: # Partition stats
+     sz: 840 # Actual size
+     xSz: 630 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 263313 # Hits
+     misses: 270633 # Misses
+     dems: 275975 # Demotions
+     evs: 0 # Evictions
+     szCycles: 513809440000 # Cumulative per-cycle sum of sz
+     xSzCycles: 378389610000 # Cumulative per-cycle sum of xSz
+    part-3: # Partition stats
+     sz: 795 # Actual size
+     xSz: 596 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 255905 # Hits
+     misses: 268825 # Misses
+     dems: 274791 # Demotions
+     evs: 0 # Evictions
+     szCycles: 504749970000 # Cumulative per-cycle sum of sz
+     xSzCycles: 359920330000 # Cumulative per-cycle sum of xSz
+    part-4: # Partition stats
+     sz: 836 # Actual size
+     xSz: 610 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 258109 # Hits
+     misses: 272353 # Misses
+     dems: 278172 # Demotions
+     evs: 0 # Evictions
+     szCycles: 516501510000 # Cumulative per-cycle sum of sz
+     xSzCycles: 361957200000 # Cumulative per-cycle sum of xSz
+    part-5: # Partition stats
+     sz: 836 # Actual size
+     xSz: 613 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 255456 # Hits
+     misses: 269351 # Misses
+     dems: 274278 # Demotions
+     evs: 0 # Evictions
+     szCycles: 503643630000 # Cumulative per-cycle sum of sz
+     xSzCycles: 360075180000 # Cumulative per-cycle sum of xSz
+    part-6: # Partition stats
+     sz: 563 # Actual size
+     xSz: 610 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 131512 # Hits
+     misses: 265373 # Misses
+     dems: 269191 # Demotions
+     evs: 0 # Evictions
+     szCycles: 332384530000 # Cumulative per-cycle sum of sz
+     xSzCycles: 353954400000 # Cumulative per-cycle sum of xSz
+    part-7: # Partition stats
+     sz: 553 # Actual size
+     xSz: 645 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 29529 # Hits
+     misses: 254806 # Misses
+     dems: 256973 # Demotions
+     evs: 129 # Evictions
+     szCycles: 315275960000 # Cumulative per-cycle sum of sz
+     xSzCycles: 386304820000 # Cumulative per-cycle sum of xSz
+    part-8: # Partition stats
+     sz: 2000 # Actual size
+     xSz: 0 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 0 # Target size
+     stTgtSz: 0 # Short-term target size (used with smoothedTransients)
+     hits: 0 # Hits
+     misses: 0 # Misses
+     dems: 0 # Demotions
+     evs: 1902549 # Evictions
+     szCycles: 2138327030000 # Cumulative per-cycle sum of sz
+     xSzCycles: 491255490000 # Cumulative per-cycle sum of xSz
+  l3-0b6: # Cache stats
+   hGETS: 7250886 # GETS hits
+   hGETX: 17539 # GETX hits
+   mGETS: 1763048 # GETS misses
+   mGETXIM: 22503 # GETX I->M misses
+   mGETXSM: 0 # GETX S->M misses (upgrade misses)
+   PUTS: 8951034 # Clean evictions (from lower level)
+   PUTX: 59486 # Dirty evictions (from lower level)
+   INV: 0 # Invalidates (from upper level)
+   INVX: 0 # Downgrades (from upper level)
+   FWD: 0 # Forwards (from upper level)
+   latGETnl: 160699590 # GET request latency on next level
+   latGETnet: 0 # GET request latency on network to next level
+   part: # Vantage replacement policy stats
+    ffaProms: 117924 # Promotions from unmanaged region
+    updCycles: 667650000 # Cycles of updates experienced on size-cycle counters
+    part-0: # Partition stats
+     sz: 7599 # Actual size
+     xSz: 10860 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 10240 # Target size
+     stTgtSz: 10240 # Short-term target size (used with smoothedTransients)
+     hits: 4888960 # Hits
+     misses: 30937 # Misses
+     dems: 12451 # Demotions
+     evs: 11931 # Evictions
+     szCycles: 4878037040000 # Cumulative per-cycle sum of sz
+     xSzCycles: 7355754760000 # Cumulative per-cycle sum of xSz
+    part-1: # Partition stats
+     sz: 1063 # Actual size
+     xSz: 733 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 1024 # Target size
+     stTgtSz: 1024 # Short-term target size (used with smoothedTransients)
+     hits: 300858 # Hits
+     misses: 320912 # Misses
+     dems: 338665 # Demotions
+     evs: 0 # Evictions
+     szCycles: 643956370000 # Cumulative per-cycle sum of sz
+     xSzCycles: 450118910000 # Cumulative per-cycle sum of xSz
+    part-2: # Partition stats
+     sz: 961 # Actual size
+     xSz: 677 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 303605 # Hits
+     misses: 321524 # Misses
+     dems: 340579 # Demotions
+     evs: 64 # Evictions
+     szCycles: 594487970000 # Cumulative per-cycle sum of sz
+     xSzCycles: 435257040000 # Cumulative per-cycle sum of xSz
+    part-3: # Partition stats
+     sz: 960 # Actual size
+     xSz: 651 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 518925 # Hits
+     misses: 133904 # Misses
+     dems: 138122 # Demotions
+     evs: 4179 # Evictions
+     szCycles: 794016870000 # Cumulative per-cycle sum of sz
+     xSzCycles: 477220540000 # Cumulative per-cycle sum of xSz
+    part-4: # Partition stats
+     sz: 1558 # Actual size
+     xSz: 939 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 1600 # Target size
+     stTgtSz: 1600 # Short-term target size (used with smoothedTransients)
+     hits: 321552 # Hits
+     misses: 303576 # Misses
+     dems: 322221 # Demotions
+     evs: 891 # Evictions
+     szCycles: 666529910000 # Cumulative per-cycle sum of sz
+     xSzCycles: 419939760000 # Cumulative per-cycle sum of xSz
+    part-5: # Partition stats
+     sz: 977 # Actual size
+     xSz: 650 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 293302 # Hits
+     misses: 302761 # Misses
+     dems: 320946 # Demotions
+     evs: 0 # Evictions
+     szCycles: 536096200000 # Cumulative per-cycle sum of sz
+     xSzCycles: 387130720000 # Cumulative per-cycle sum of xSz
+    part-6: # Partition stats
+     sz: 1266 # Actual size
+     xSz: 947 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 2048 # Target size
+     stTgtSz: 2048 # Short-term target size (used with smoothedTransients)
+     hits: 427484 # Hits
+     misses: 197510 # Misses
+     dems: 208037 # Demotions
+     evs: 6292 # Evictions
+     szCycles: 490282690000 # Cumulative per-cycle sum of sz
+     xSzCycles: 449131400000 # Cumulative per-cycle sum of xSz
+    part-7: # Partition stats
+     sz: 952 # Actual size
+     xSz: 927 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 1024 # Target size
+     stTgtSz: 1024 # Short-term target size (used with smoothedTransients)
+     hits: 213739 # Hits
+     misses: 174427 # Misses
+     dems: 175065 # Demotions
+     evs: 8696 # Evictions
+     szCycles: 424054720000 # Cumulative per-cycle sum of sz
+     xSzCycles: 472780640000 # Cumulative per-cycle sum of xSz
+    part-8: # Partition stats
+     sz: 1048 # Actual size
+     xSz: 0 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 0 # Target size
+     stTgtSz: 0 # Short-term target size (used with smoothedTransients)
+     hits: 0 # Hits
+     misses: 0 # Misses
+     dems: 0 # Demotions
+     evs: 1753498 # Evictions
+     szCycles: 1911315830000 # Cumulative per-cycle sum of sz
+     xSzCycles: 491443830000 # Cumulative per-cycle sum of xSz
+  l3-0b7: # Cache stats
+   hGETS: 8544875 # GETS hits
+   hGETX: 17809 # GETX hits
+   mGETS: 1420263 # GETS misses
+   mGETXIM: 22819 # GETX I->M misses
+   mGETXSM: 0 # GETX S->M misses (upgrade misses)
+   PUTS: 9889474 # Clean evictions (from lower level)
+   PUTX: 58235 # Dirty evictions (from lower level)
+   INV: 0 # Invalidates (from upper level)
+   INVX: 0 # Downgrades (from upper level)
+   FWD: 0 # Forwards (from upper level)
+   latGETnl: 129877380 # GET request latency on next level
+   latGETnet: 0 # GET request latency on network to next level
+   part: # Vantage replacement policy stats
+    ffaProms: 308462 # Promotions from unmanaged region
+    updCycles: 667650000 # Cycles of updates experienced on size-cycle counters
+    part-0: # Partition stats
+     sz: 7147 # Actual size
+     xSz: 10292 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 7168 # Target size
+     stTgtSz: 7168 # Short-term target size (used with smoothedTransients)
+     hits: 4141016 # Hits
+     misses: 39119 # Misses
+     dems: 13090 # Demotions
+     evs: 20405 # Evictions
+     szCycles: 4848820780000 # Cumulative per-cycle sum of sz
+     xSzCycles: 7214336510000 # Cumulative per-cycle sum of xSz
+    part-1: # Partition stats
+     sz: 915 # Actual size
+     xSz: 762 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 402934 # Hits
+     misses: 270025 # Misses
+     dems: 334270 # Demotions
+     evs: 0 # Evictions
+     szCycles: 574742360000 # Cumulative per-cycle sum of sz
+     xSzCycles: 416011950000 # Cumulative per-cycle sum of xSz
+    part-2: # Partition stats
+     sz: 956 # Actual size
+     xSz: 851 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 647830 # Hits
+     misses: 272703 # Misses
+     dems: 329831 # Demotions
+     evs: 0 # Evictions
+     szCycles: 589352250000 # Cumulative per-cycle sum of sz
+     xSzCycles: 456467790000 # Cumulative per-cycle sum of xSz
+    part-3: # Partition stats
+     sz: 1891 # Actual size
+     xSz: 1032 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 3072 # Target size
+     stTgtSz: 3072 # Short-term target size (used with smoothedTransients)
+     hits: 1149467 # Hits
+     misses: 29927 # Misses
+     dems: 13407 # Demotions
+     evs: 21253 # Evictions
+     szCycles: 1040441140000 # Cumulative per-cycle sum of sz
+     xSzCycles: 555080990000 # Cumulative per-cycle sum of xSz
+    part-4: # Partition stats
+     sz: 967 # Actual size
+     xSz: 760 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 652182 # Hits
+     misses: 270629 # Misses
+     dems: 329732 # Demotions
+     evs: 0 # Evictions
+     szCycles: 579951210000 # Cumulative per-cycle sum of sz
+     xSzCycles: 400835800000 # Cumulative per-cycle sum of xSz
+    part-5: # Partition stats
+     sz: 1646 # Actual size
+     xSz: 988 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 4096 # Target size
+     stTgtSz: 4096 # Short-term target size (used with smoothedTransients)
+     hits: 837881 # Hits
+     misses: 153340 # Misses
+     dems: 179825 # Demotions
+     evs: 13004 # Evictions
+     szCycles: 778561010000 # Cumulative per-cycle sum of sz
+     xSzCycles: 465009490000 # Cumulative per-cycle sum of xSz
+    part-6: # Partition stats
+     sz: 1140 # Actual size
+     xSz: 901 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 1088 # Target size
+     stTgtSz: 1088 # Short-term target size (used with smoothedTransients)
+     hits: 507130 # Hits
+     misses: 135479 # Misses
+     dems: 137184 # Demotions
+     evs: 17676 # Evictions
+     szCycles: 650445610000 # Cumulative per-cycle sum of sz
+     xSzCycles: 508267970000 # Cumulative per-cycle sum of xSz
+    part-7: # Partition stats
+     sz: 555 # Actual size
+     xSz: 798 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 512 # Target size
+     stTgtSz: 512 # Short-term target size (used with smoothedTransients)
+     hits: 224244 # Hits
+     misses: 271860 # Misses
+     dems: 326461 # Demotions
+     evs: 189 # Evictions
+     szCycles: 321038000000 # Cumulative per-cycle sum of sz
+     xSzCycles: 431071590000 # Cumulative per-cycle sum of xSz
+    part-8: # Partition stats
+     sz: 1167 # Actual size
+     xSz: 0 # Extended actual size, including lines currently demoted to FFA
+     tgtSz: 0 # Target size
+     stTgtSz: 0 # Short-term target size (used with smoothedTransients)
+     hits: 0 # Hits
+     misses: 0 # Misses
+     dems: 0 # Demotions
+     evs: 1370555 # Evictions
+     szCycles: 1555425240000 # Cumulative per-cycle sum of sz
+     xSzCycles: 491695510000 # Cumulative per-cycle sum of xSz
+ mem: # Memory controller stats
+  mem-0: # Memory controller stats
+   rd: 2740459 # Read requests
+   wr: 28932 # Write requests
+   rdlat: 369777964 # Total latency experienced by read requests
+   wrlat: 4567732 # Total latency experienced by write requests
+   rdhits: 18242 # Read row hits
+   wrhits: 146 # Write row hits
+   mlh: # latency histogram for memory requests
+    0: 0
+    1: 0
+    2: 0
+    3: 0
+    4: 0
+    5: 0
+    6: 0
+    7: 0
+    8: 0
+    9: 0
+    10: 0
+    11: 2681
+    12: 3502
+    13: 2619030
+    14: 55993
+    15: 4448
+    16: 3221
+    17: 3452
+    18: 3511
+    19: 3290
+    20: 2984
+    21: 2927
+    22: 2127
+    23: 1823
+    24: 1897
+    25: 1627
+    26: 1378
+    27: 1516
+    28: 1653
+    29: 1564
+    30: 1551
+    31: 1417
+    32: 1749
+    33: 1540
+    34: 1600
+    35: 1450
+    36: 1625
+    37: 1615
+    38: 1527
+    39: 1580
+    40: 1384
+    41: 1682
+    42: 1549
+    43: 758
+    44: 276
+    45: 207
+    46: 152
+    47: 115
+    48: 33
+    49: 6
+    50: 4
+    51: 6
+    52: 4
+    53: 2
+    54: 1
+    55: 1
+    56: 0
+    57: 0
+    58: 0
+    59: 1
+    60: 0
+    61: 0
+    62: 0
+    63: 0
+    64: 0
+    65: 0
+    66: 0
+    67: 0
+    68: 0
+    69: 0
+    70: 0
+    71: 0
+    72: 0
+    73: 0
+    74: 0
+    75: 0
+    76: 0
+    77: 0
+    78: 0
+    79: 0
+    80: 0
+    81: 0
+    82: 0
+    83: 0
+    84: 0
+    85: 0
+    86: 0
+    87: 0
+    88: 0
+    89: 0
+    90: 0
+    91: 0
+    92: 0
+    93: 0
+    94: 0
+    95: 0
+    96: 0
+    97: 0
+    98: 0
+    99: 0
+  mem-1: # Memory controller stats
+   rd: 4007557 # Read requests
+   wr: 34217 # Write requests
+   rdlat: 543152963 # Total latency experienced by read requests
+   wrlat: 5477970 # Total latency experienced by write requests
+   rdhits: 28079 # Read row hits
+   wrhits: 149 # Write row hits
+   mlh: # latency histogram for memory requests
+    0: 0
+    1: 0
+    2: 0
+    3: 0
+    4: 0
+    5: 0
+    6: 0
+    7: 0
+    8: 0
+    9: 0
+    10: 0
+    11: 4272
+    12: 5749
+    13: 3733869
+    14: 147881
+    15: 12908
+    16: 7887
+    17: 9974
+    18: 7779
+    19: 7222
+    20: 6817
+    21: 6738
+    22: 3801
+    23: 4065
+    24: 3172
+    25: 2690
+    26: 2247
+    27: 2207
+    28: 2429
+    29: 2292
+    30: 2393
+    31: 2273
+    32: 2419
+    33: 2388
+    34: 2314
+    35: 2336
+    36: 2283
+    37: 2388
+    38: 2302
+    39: 2325
+    40: 2204
+    41: 2423
+    42: 2421
+    43: 1239
+    44: 595
+    45: 454
+    46: 363
+    47: 270
+    48: 105
+    49: 16
+    50: 14
+    51: 13
+    52: 7
+    53: 4
+    54: 3
+    55: 0
+    56: 0
+    57: 2
+    58: 1
+    59: 1
+    60: 0
+    61: 0
+    62: 0
+    63: 0
+    64: 0
+    65: 2
+    66: 0
+    67: 0
+    68: 0
+    69: 0
+    70: 0
+    71: 0
+    72: 0
+    73: 0
+    74: 0
+    75: 0
+    76: 0
+    77: 0
+    78: 0
+    79: 0
+    80: 0
+    81: 0
+    82: 0
+    83: 0
+    84: 0
+    85: 0
+    86: 0
+    87: 0
+    88: 0
+    89: 0
+    90: 0
+    91: 0
+    92: 0
+    93: 0
+    94: 0
+    95: 0
+    96: 0
+    97: 0
+    98: 0
+    99: 0
+  mem-2: # Memory controller stats
+   rd: 3681425 # Read requests
+   wr: 32841 # Write requests
+   rdlat: 498259774 # Total latency experienced by read requests
+   wrlat: 5218773 # Total latency experienced by write requests
+   rdhits: 25698 # Read row hits
+   wrhits: 183 # Write row hits
+   mlh: # latency histogram for memory requests
+    0: 0
+    1: 0
+    2: 0
+    3: 0
+    4: 0
+    5: 0
+    6: 0
+    7: 0
+    8: 0
+    9: 0
+    10: 0
+    11: 4722
+    12: 5640
+    13: 3438938
+    14: 125369
+    15: 12856
+    16: 7930
+    17: 8146
+    18: 7747
+    19: 7458
+    20: 7247
+    21: 6862
+    22: 2624
+    23: 2444
+    24: 2476
+    25: 2176
+    26: 1894
+    27: 1972
+    28: 2097
+    29: 2024
+    30: 2112
+    31: 1997
+    32: 2169
+    33: 2195
+    34: 2154
+    35: 2177
+    36: 2142
+    37: 2182
+    38: 2192
+    39: 2206
+    40: 2103
+    41: 2285
+    42: 2261
+    43: 1109
+    44: 494
+    45: 350
+    46: 293
+    47: 228
+    48: 104
+    49: 19
+    50: 10
+    51: 6
+    52: 3
+    53: 4
+    54: 2
+    55: 2
+    56: 0
+    57: 0
+    58: 1
+    59: 0
+    60: 1
+    61: 0
+    62: 0
+    63: 0
+    64: 1
+    65: 0
+    66: 0
+    67: 1
+    68: 0
+    69: 0
+    70: 0
+    71: 0
+    72: 0
+    73: 0
+    74: 0
+    75: 0
+    76: 0
+    77: 0
+    78: 0
+    79: 0
+    80: 0
+    81: 0
+    82: 0
+    83: 0
+    84: 0
+    85: 0
+    86: 0
+    87: 0
+    88: 0
+    89: 0
+    90: 0
+    91: 0
+    92: 0
+    93: 0
+    94: 0
+    95: 0
+    96: 0
+    97: 0
+    98: 0
+    99: 0
+  mem-3: # Memory controller stats
+   rd: 3719666 # Read requests
+   wr: 30514 # Write requests
+   rdlat: 503778235 # Total latency experienced by read requests
+   wrlat: 4874742 # Total latency experienced by write requests
+   rdhits: 29055 # Read row hits
+   wrhits: 161 # Write row hits
+   mlh: # latency histogram for memory requests
+    0: 0
+    1: 0
+    2: 0
+    3: 0
+    4: 0
+    5: 0
+    6: 0
+    7: 0
+    8: 0
+    9: 0
+    10: 0
+    11: 7429
+    12: 5205
+    13: 3498047
+    14: 112354
+    15: 9947
+    16: 6400
+    17: 6352
+    18: 5687
+    19: 6149
+    20: 6487
+    21: 5559
+    22: 2298
+    23: 2518
+    24: 2614
+    25: 2514
+    26: 1947
+    27: 2099
+    28: 2358
+    29: 2324
+    30: 2115
+    31: 1943
+    32: 2338
+    33: 2303
+    34: 2230
+    35: 2064
+    36: 2180
+    37: 2341
+    38: 2321
+    39: 2196
+    40: 1929
+    41: 2340
+    42: 2345
+    43: 1221
+    44: 517
+    45: 351
+    46: 276
+    47: 214
+    48: 98
+    49: 13
+    50: 9
+    51: 2
+    52: 3
+    53: 2
+    54: 7
+    55: 9
+    56: 2
+    57: 2
+    58: 1
+    59: 0
+    60: 1
+    61: 0
+    62: 2
+    63: 3
+    64: 0
+    65: 0
+    66: 0
+    67: 0
+    68: 0
+    69: 0
+    70: 0
+    71: 0
+    72: 0
+    73: 0
+    74: 0
+    75: 0
+    76: 0
+    77: 0
+    78: 0
+    79: 0
+    80: 0
+    81: 0
+    82: 0
+    83: 0
+    84: 0
+    85: 0
+    86: 0
+    87: 0
+    88: 0
+    89: 0
+    90: 0
+    91: 0
+    92: 0
+    93: 0
+    94: 0
+    95: 0
+    96: 0
+    97: 0
+    98: 0
+    99: 0
+ sched: # Scheduler stats
+  thCr: 9 # Threads created
+  thFn: 0 # Threads finished
+  schedEvs: 9 # Schedule events
+  waitEvs: 1 # Wait events
+  handoffEvs: 0 # Handoff events
+  sleepEvs: 0 # Sleep events
+  idlePhases: 0 # Phases with no thread active
+  idlePeriods: 0 # Periods with no thread active
+  occHist: # Occupancy histogram
+   0: 0
+   1: 6880
+   2: 0
+   3: 0
+   4: 0
+   5: 0
+   6: 0
+   7: 0
+   8: 59886
+  rqSzHist: # Run queue size histogram
+   0: 66766
+   1: 0
+   2: 0
+   3: 0
+   4: 0
+   5: 0
+   6: 0
+   7: 0
+   8: 0
+   9: 0
+   10: 0
+   11: 0
+   12: 0
+   13: 0
+   14: 0
+   15: 0
+   16: 0
+ procCycles: # Per-process unhalted core cycles
+  0: 4648971081
+  1: 0
+  2: 0
+  3: 0
+  4: 0
+  5: 0
+  6: 0
+  7: 0
+  8: 0
+  9: 0
+  10: 0
+  11: 0
+  12: 0
+  13: 0
+  14: 0
+  15: 0
+  16: 0
+  17: 0
+  18: 0
+  19: 0
+  20: 0
+  21: 0
+  22: 0
+  23: 0
+  24: 0
+  25: 0
+  26: 0
+  27: 0
+  28: 0
+  29: 0
+  30: 0
+  31: 0
+  32: 0
+  33: 0
+  34: 0
+  35: 0
+  36: 0
+  37: 0
+  38: 0
+  39: 0
+  40: 0
+  41: 0
+  42: 0
+  43: 0
+  44: 0
+  45: 0
+  46: 0
+  47: 0
+  48: 0
+  49: 0
+  50: 0
+  51: 0
+  52: 0
+  53: 0
+  54: 0
+  55: 0
+  56: 0
+  57: 0
+  58: 0
+  59: 0
+  60: 0
+  61: 0
+  62: 0
+  63: 0
+ procInstrs: # Per-process instructions
+  0: 5000050985
+  1: 0
+  2: 0
+  3: 0
+  4: 0
+  5: 0
+  6: 0
+  7: 0
+  8: 0
+  9: 0
+  10: 0
+  11: 0
+  12: 0
+  13: 0
+  14: 0
+  15: 0
+  16: 0
+  17: 0
+  18: 0
+  19: 0
+  20: 0
+  21: 0
+  22: 0
+  23: 0
+  24: 0
+  25: 0
+  26: 0
+  27: 0
+  28: 0
+  29: 0
+  30: 0
+  31: 0
+  32: 0
+  33: 0
+  34: 0
+  35: 0
+  36: 0
+  37: 0
+  38: 0
+  39: 0
+  40: 0
+  41: 0
+  42: 0
+  43: 0
+  44: 0
+  45: 0
+  46: 0
+  47: 0
+  48: 0
+  49: 0
+  50: 0
+  51: 0
+  52: 0
+  53: 0
+  54: 0
+  55: 0
+  56: 0
+  57: 0
+  58: 0
+  59: 0
+  60: 0
+  61: 0
+  62: 0
+  63: 0
+ heartbeats: # Per-process heartbeats
+  0: 0
+  1: 0
+  2: 0
+  3: 0
+  4: 0
+  5: 0
+  6: 0
+  7: 0
+  8: 0
+  9: 0
+  10: 0
+  11: 0
+  12: 0
+  13: 0
+  14: 0
+  15: 0
+  16: 0
+  17: 0
+  18: 0
+  19: 0
+  20: 0
+  21: 0
+  22: 0
+  23: 0
+  24: 0
+  25: 0
+  26: 0
+  27: 0
+  28: 0
+  29: 0
+  30: 0
+  31: 0
+  32: 0
+  33: 0
+  34: 0
+  35: 0
+  36: 0
+  37: 0
+  38: 0
+  39: 0
+  40: 0
+  41: 0
+  42: 0
+  43: 0
+  44: 0
+  45: 0
+  46: 0
+  47: 0
+  48: 0
+  49: 0
+  50: 0
+  51: 0
+  52: 0
+  53: 0
+  54: 0
+  55: 0
+  56: 0
+  57: 0
+  58: 0
+  59: 0
+  60: 0
+  61: 0
+  62: 0
+  63: 0
+===
