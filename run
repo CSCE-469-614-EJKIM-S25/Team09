@@ -1,4 +1,5 @@
 #!/bin/sh
 
+#not complete
 ./simulation/zsim/run-all
 python /analysis/main.py
