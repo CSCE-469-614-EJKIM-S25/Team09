@@ -1,0 +1,9 @@
+Running on: LAPTOP-UB8J0I7G
+Start time: Thu Apr 24 19:41:58 2025
+Heartbeat time: Thu Apr 24 20:34:41 2025
+Stats since start:
+ 6379 phases
+ 63790000 cycles
+ 20167 cycles/s
+Stats since last heartbeat (4s):
+ 6317500 cycles/s
