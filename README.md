@@ -53,14 +53,6 @@ Blocks are demoted from overcrowded partitions into an unmanaged shared region t
 Vantage improves cache efficiency under multi-application workloads without using profiling or machine learning.
 
 
-To run the entire project simulation and analysis:
-
-
-```
-$ ./simulation/zsim/run-all
-$ python /analysis/main.py
-```
-
 ### Simulation - Data Collection
 To view simulation intructions see:
 
@@ -68,6 +60,20 @@ To view simulation intructions see:
 simulation/README.md
 ```
 
+### Analysis
+To view analysis instructions see:
+
+```
+analysis/README.md
+```
+
+To run the entire project simulation and analysis:
+
+
+```
+$ ./simulation/zsim/run-all
+$ python /analysis/main.py
+```
 
 The following files were modified to add support for PC propagation to LLC:
 
